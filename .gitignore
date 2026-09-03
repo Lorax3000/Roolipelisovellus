@@ -1,0 +1,21 @@
+#IDE
+.vscode/
+
+#OS
+.DS_Store
+Thumbs.db
+
+#Logs
+*.log
+
+#Environment files
+.env
+
+#Uploads
+uploads/
+
+#Temporary files
+tmp/
+
+#Database dumps
+*.sql
