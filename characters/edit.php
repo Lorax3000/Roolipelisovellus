@@ -1,0 +1,25 @@
+<?php include "../includes/header.php"; ?>
+
+<div class="character_edit_form">
+    <form method="post">
+        <label for="character_name">Character Name:</label>
+        <input name="character_name" type="text" placeholder="...">
+
+        <label for="character_class">Class</label>
+        <select name="character_class">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+
+        <label for="character_race">Race</label>
+        <input name="character_race" type="text">
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+</div>
+
+<?php include "../includes/footer.php"; ?>
