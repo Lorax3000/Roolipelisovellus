@@ -43,24 +43,31 @@ class CharacterController
     }
 
     public function editCharacter()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            $id = $_POST['id'];
-            $name = $_POST['character_name'];
-            $class = $_POST['character_class'];
-            $race = $_POST['character_race'];
-
-            $model = new CharacterModel($this->pdo);
-
-            $model->editCharacter($id, $name, $class, $race);
-
-            header("Location: ../index.php?page=dashboard");
-            exit();
-            
-        }
-        
+{
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: index.php?page=login");
+        exit();
     }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $id = $_POST['id'];
+        $name = $_POST['character_name'];
+        $class = $_POST['character_class'];
+        $race = $_POST['character_race'];
+        $notes = $_POST['character_notes'];
+        $status = $_POST['character_status'];
+
+        $userId = $_SESSION['user_id'];
+
+        $model = new CharacterModel($this->pdo);
+
+        $model->editCharacter($id, $userId, $name, $class, $race, $notes, $status);
+
+        header("Location: index.php?page=dashboard");
+        exit();
+    }
+}
 
     public function showCharacter($id)
     {
@@ -86,7 +93,19 @@ class CharacterController
         }
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
+        if (isset($_SESSION['user_id'])) {
+    
+            $userId = $_SESSION['user_id'];
+    
+            $model = new CharacterModel($this->pdo);
+    
+            $characters = $model->getCharactersByUser($userId);
+        } else {
+            $characters = [];
+        }
+    
         require 'pages/dashboard.php';
     }
 }

@@ -44,16 +44,18 @@ class CharacterModel{
         
         $stmt = $this->pdo->prepare($sql);
         
-        $user = 1;
+        $user = 4;
         $campaign = 1;
         $level = 1;
-        $health = 1;
-        $mana = 1;
-        $strength = 1;
-        $endurance = 1;
-        $agility = 1;
-        $intelligence = 1;
-        $charisma = 1;
+
+        $health = rand(10, 100);
+        $mana = rand(10, 100);
+        $strength = rand(1, 20);
+        $endurance = rand(1, 20);
+        $agility = rand(1, 20);
+        $intelligence = rand(1, 20);
+        $charisma = rand(1, 20);
+        
         $notes = "Yeah";
         $status = "alive";
         
@@ -87,54 +89,50 @@ class CharacterModel{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function editCharacter($id, $name, $class, $race)
-{
-    $sql = "UPDATE characters SET
-        character_name = :name,
-        character_class = :class,
-        character_race = :race,
-        character_level = :level,
-        character_health = :health,
-        character_mana = :mana,
-        character_strength = :strength,
-        character_endurance = :endurance,
-        character_agility = :agility,
-        character_intelligence = :intelligence,
-        character_charisma = :charisma,
-        character_notes = :notes,
-        character_status = :status
-        WHERE character_id = :id";
+    public function getCharactersByUser($userId)
+    {
+        $sql = "SELECT * FROM characters
+                WHERE character_user = :user";
+    
+        $stmt = $this->pdo->prepare($sql);
+    
+        $stmt->execute([
+            ':user' => $userId
+        ]);
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-    $stmt = $this->pdo->prepare($sql);
-
-    $level = 1;
-    $health = 1;
-    $mana = 1;
-    $strength = 1;
-    $endurance = 1;
-    $agility = 1;
-    $intelligence = 1;
-    $charisma = 1;
-    $notes = "Yeah";
-    $status = "alive";
-
-    $stmt->execute([
-        ':id' => $id,
-        ':name' => $name,
-        ':class' => $class,
-        ':race' => $race,
-        ':level' => $level,
-        ':health' => $health,
-        ':mana' => $mana,
-        ':strength' => $strength,
-        ':endurance' => $endurance,
-        ':agility' => $agility,
-        ':intelligence' => $intelligence,
-        ':charisma' => $charisma,
-        ':notes' => $notes,
-        ':status' => $status
-    ]);
-}
+    public function editCharacter(
+        $id,
+        $userId,
+        $name,
+        $class,
+        $race,
+        $notes,
+        $status
+    ) {
+        $sql = "UPDATE characters SET
+            character_name = :name,
+            character_class = :class,
+            character_race = :race,
+            character_notes = :notes,
+            character_status = :status
+            WHERE character_id = :id
+            AND character_user = :user";
+    
+        $stmt = $this->pdo->prepare($sql);
+    
+        $stmt->execute([
+            ':id' => $id,
+            ':user' => $userId,
+            ':name' => $name,
+            ':class' => $class,
+            ':race' => $race,
+            ':notes' => $notes,
+            ':status' => $status
+        ]);
+    }
 
     public function deleteCharacter($id){
         $sql = "DELETE FROM characters WHERE character_id = :id";

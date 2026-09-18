@@ -1,26 +1,71 @@
 
 
 <div class="character_edit_form">
-    <form method="POST" action="../index.php?page=editCharacter">
-        <input type="hidden" name="id" value="<?=$character['character_id']?>">
+<form method="POST" action="../index.php?page=editCharacter">
 
-        <label for="character_name">Character Name:</label>
-        <input name="character_name" type="text" placeholder="..." value="<?=$character['character_name']?>">
+    <input
+        type="hidden"
+        name="id"
+        value="<?= $character['character_id'] ?>"
+    >
 
-        <label for="character_class">Class</label>
-        <select name="character_class" value="<?=$character['character_class']?>">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+    <div>
+        <label>Name:</label>
+        <input
+            type="text"
+            name="character_name"
+            value="<?= htmlspecialchars($character['character_name']) ?>"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Class:</label>
+        <input
+            type="text"
+            name="character_class"
+            value="<?= htmlspecialchars($character['character_class']) ?>"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Race:</label>
+        <input
+            type="text"
+            name="character_race"
+            value="<?= htmlspecialchars($character['character_race']) ?>"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Notes:</label>
+        <textarea name="character_notes" required><?= htmlspecialchars($character['character_notes']) ?></textarea>
+    </div>
+
+    <div>
+        <label>Status:</label>
+
+        <select name="character_status" required>
+
+            <option value="alive"
+                <?= $character['character_status'] === 'alive' ? 'selected' : '' ?>>
+                Alive
+            </option>
+
+            <option value="dead"
+                <?= $character['character_status'] === 'dead' ? 'selected' : '' ?>>
+                Dead
+            </option>
+
         </select>
+    </div>
 
-        <label for="character_race">Race</label>
-        <input name="character_race" type="text" value="<?=$character['character_race']?>">
+    <button type="submit">
+        Save Changes
+    </button>
 
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
-    </form>
+</form>
 </div>
 

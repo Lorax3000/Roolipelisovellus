@@ -1,23 +1,33 @@
 <?php
 session_start();
-
 require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/characters/characterController.php';
+require_once __DIR__ . '/users/userController.php';
 
-$page = $_GET['page'] ?? 'home';
+$page = $_GET['page'] ?? 'dashboard';
 
 $pdo = connect();
 
 $characterController = new CharacterController($pdo);
+$userController = new UserController($pdo);
 
 switch ($page) {
+
+    case 'dashboard':
+        $characterController->dashboard();
+        break;
+
+    case 'showCreateCharacter':
+        $characterController->showCreateCharacter();
+        break;
 
     case 'createCharacter':
         $characterController->createCharacter();
         break;
-    
-    case 'showCreateCharacter':
-        $characterController->showCreateCharacter();
+
+    case 'showCharacter':
+        $id = $_GET['id'];
+        $characterController->showCharacter($id);
         break;
 
     case 'showEditCharacter':
@@ -25,25 +35,35 @@ switch ($page) {
         $characterController->showEditCharacter($id);
         break;
 
-    case 'showCharacter':
-        $id = $_GET['id'];
-        $characterController->showCharacter($id);
+    case 'editCharacter':
+        $characterController->editCharacter();
         break;
 
     case 'deleteCharacter':
         $characterController->deleteCharacter();
         break;
 
-    case 'dashboard':
-        $characterController->dashboard();
-        break;
-    
-    case 'editCharacter':
-        $characterController->editCharacter();
+    case 'login':
+        $userController->showLogin();
         break;
 
-    case 'showCharacter':
-        $id = $_GET['id'];
-        $characterController->showCharacter($id);
+    case 'loginUser':
+        $userController->login();
+        break;
+
+    case 'signup':
+        $userController->showSignup();
+        break;
+
+    case 'signupUser':
+        $userController->signup();
+        break;
+
+    case 'logout':
+        $userController->logout();
+        break;
+
+    default:
+        $characterController->dashboard();
         break;
 }
