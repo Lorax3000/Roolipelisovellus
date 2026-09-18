@@ -2,9 +2,9 @@
 
 <body>
 
-    <h1>Log In</h1>
+    <h1>Sign Up</h1>
 
-    <form method="POST" action="../index.php?page=loginUser">
+    <form method="POST" action="../index.php?page=signupUser">
 
         <div>
             <label>Username:</label>
@@ -12,18 +12,23 @@
         </div>
 
         <div>
+            <label>Email:</label>
+            <input type="email" name="user_email" required>
+        </div>
+
+        <div>
             <label>Password:</label>
             <input type="password" name="user_pwd" required>
         </div>
 
-        <button type="submit">Log In</button>
+        <button type="submit">Sign Up</button>
 
     </form>
 
     <p>
-        Don't have an account?
-        <a href="../index.php?page=signup">
-            Sign Up
+        Already have an account?
+        <a href="../index.php?page=login">
+            Log In
         </a>
     </p>
 

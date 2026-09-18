@@ -1,4 +1,3 @@
-<h1 class="title">Kotisivu</h1>
-<h1>Kirujaudu sisään</h1>
-    <a href="../pages/login.php">Kirjaudu</a>
-    <a href="../pages/register.php">Rekisteröidy</a>
+<a href="../index.php?page=login">Login</a>
+<a href="../index.php?page=signup">Signup</a>
+<a href="../index.php?page=logout">Logout</a>

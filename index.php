@@ -1,29 +1,35 @@
 <?php
 session_start();
+require_once __DIR__ . '/config/db.php';
+require_once __DIR__ . '/users/userController.php';
 
-require_once __DIR__ . '/models/db.php';
-require_once __DIR__ . '/controllers/homeController.php';
-
-$page = $_GET['page'] ?? 'home';
-
-$controller = new homeController();
+$page = $_GET['page'] ?? 'dashboard';
 
 $pdo = connect();
 
-switch($page) {
-    case 'register':
-        $controller->showRegister();
-        break;
+$userController = new UserController($pdo);
+
+switch ($page) {
     case 'login':
-        $controller->showLogin();
+        $userController->showLogin();
         break;
-    case 'registerUser':
-        $controller->registerUser($pdo);
-        break;
+
     case 'loginUser':
-        $controller->loginUser($pdo);
+        $userController->login();
         break;
+
+    case 'signup':
+        $userController->showSignup();
+        break;
+
+    case 'signupUser':
+        $userController->signup();
+        break;
+
     case 'logout':
-        $controller->logout();
+        $userController->logout();
         break;
+
+    case 'home':
+        $userController->home();
 }
