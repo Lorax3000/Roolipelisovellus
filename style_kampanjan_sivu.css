@@ -1,0 +1,591 @@
+
+:root {
+    --bg: #070707;
+    --red: #26000C;
+    --gold: #FFC86E;
+    --text: #F5E8D0;
+    --border: #4A1625;
+    --card: #0d0d0d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Kyiv*Type Titling", serif;
+}
+
+/* HEADER */
+
+header {
+    min-height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--red);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 20px rgba(38, 0, 12, .4);
+}
+
+header h1 {
+    margin: 0;
+    color: var(--text);
+    font-size: 32px;
+    letter-spacing: 3px;
+}
+
+/* LAYOUT */
+
+.game-layout {
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr .7fr;
+    grid-template-areas:
+        "campaigns players start"
+        "notes notes notes";
+    gap: 30px;
+}
+
+/* TITLES */
+
+.section-title {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.section-title h2 {
+    margin: 0;
+    color: var(--gold);
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+/* CAMPAIGNS */
+
+.campaigns-section {
+    grid-area: campaigns;
+}
+
+.campaigns-content {
+    min-height: 250px;
+    margin-top: 20px;
+    padding: 25px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.campaigns-content h3 {
+    margin-top: 0;
+    color: var(--gold);
+    font-size: 19px;
+}
+
+.campaigns-content ul {
+    margin-top: 25px;
+    padding-left: 25px;
+    line-height: 2;
+}
+
+.campaigns-content li::marker {
+    color: var(--gold);
+}
+
+/* PLAYERS */
+
+.players-section {
+    grid-area: players;
+}
+
+.players-header {
+    display: grid;
+    grid-template-columns: 1fr 70px;
+    margin-top: 20px;
+    padding: 0 15px 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.players-header h3 {
+    margin: 0;
+    color: var(--gold);
+    font-size: 16px;
+}
+
+.players-header h3:last-child {
+    text-align: center;
+}
+
+.players-list {
+    padding: 5px 15px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 0;
+    border-radius: 0 0 10px 10px;
+}
+
+.player-row {
+    min-height: 55px;
+    display: grid;
+    grid-template-columns: 18px 1fr 65px 25px;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.player-row:last-child {
+    border-bottom: 0;
+}
+
+.player-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+}
+
+/* PLAYER STATUS */
+
+.player-status {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: .5px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.player-status.alive,
+.character-alive {
+    color: #8fbc8f;
+}
+
+.player-status.dead,
+.character-dead {
+    color: #8b2635;
+}
+
+.player-status:hover {
+    text-shadow: 0 0 8px currentColor;
+}
+
+/* REMOVE BUTTON */
+
+.remove-player,
+.remove-note {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    color: #666;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.remove-player {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: 300 22px/1 Arial, sans-serif;
+}
+
+.remove-player:hover,
+.remove-note:hover {
+    color: #b33a4a;
+}
+
+/* START */
+
+.start-section {
+    grid-area: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.start-game-btn {
+    width: 100%;
+    min-height: 60px;
+    padding: 12px 20px;
+    background: var(--red);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 17px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.start-game-btn:hover {
+    background: var(--gold);
+    color: var(--red);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255, 200, 110, .25);
+}
+
+/* ADD BUTTONS */
+
+.add-player-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.add-player-btn,
+.add-note-btn {
+    width: 100%;
+    min-height: 45px;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.add-note-btn {
+    min-height: 50px;
+}
+
+.add-player-btn:hover,
+.add-note-btn:hover {
+    background: var(--red);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(255, 200, 110, .15);
+}
+
+.add-player-btn:active {
+    transform: translateY(0);
+}
+
+/* NOTES */
+
+.notes-section {
+    grid-area: notes;
+    margin-top: 10px;
+}
+
+.notes-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.muistiinpano {
+    position: relative;
+    min-height: 160px;
+    padding: 25px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: .2s;
+}
+
+.muistiinpano:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+}
+
+.muistiinpano h3 {
+    margin-top: 0;
+    color: var(--gold);
+    font-size: 18px;
+}
+
+.muistiinpano p {
+    margin-bottom: 0;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+}
+
+/* NOTE BUTTONS */
+
+.note-buttons {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.edit-note {
+    padding: 4px 7px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: #777;
+    font-family: inherit;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.edit-note:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+/* PLAYER CARD */
+
+.player-name-wrapper {
+    position: relative;
+    width: fit-content;
+}
+
+.player-name {
+    color: var(--text);
+    cursor: pointer;
+    transition: .2s;
+}
+
+.player-name:hover {
+    color: var(--gold);
+    text-shadow: 0 0 8px rgba(255, 200, 110, .25);
+}
+
+.player-card {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 12px);
+    width: 270px;
+    overflow: hidden;
+    background: #0b0b0b;
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, .7),
+        0 0 15px rgba(255, 200, 110, .08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: .2s;
+    z-index: 100;
+}
+
+.player-name-wrapper:hover .player-card {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.player-card-image {
+    width: 100%;
+    height: 150px;
+    background: #111;
+    overflow: hidden;
+}
+
+.player-card-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.player-card-content {
+    padding: 16px;
+}
+
+.player-card-name {
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.player-card-line {
+    width: 100%;
+    height: 1px;
+    margin: 12px 0;
+    background: var(--border);
+}
+
+.player-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.player-card-info div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.player-card-info span {
+    color: #777;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.player-card-info strong {
+    color: var(--text);
+    font-size: 12px;
+    font-weight: normal;
+    text-align: right;
+}
+
+.player-card-description {
+    margin: 14px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    color: #aaa;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* MODAL */
+
+.note-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .75);
+    z-index: 1000;
+}
+
+.note-modal-content {
+    width: min(500px, 90%);
+    padding: 25px;
+    background: var(--card);
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .7);
+}
+
+.note-modal-content h3 {
+    margin: 0 0 20px;
+    color: var(--gold);
+    font-size: 20px;
+}
+
+.note-input {
+    width: 100%;
+    min-height: 140px;
+    padding: 12px;
+    resize: vertical;
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.note-input:focus {
+    border-color: var(--gold);
+}
+
+.note-modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.note-modal-buttons button {
+    padding: 10px 18px;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.note-modal-buttons button:hover {
+    border-color: var(--gold);
+}
+
+.note-save-btn {
+    background: var(--red) !important;
+    border-color: var(--gold) !important;
+}
+
+/* FOOTER */
+
+footer {
+    width: 100%;
+    margin-top: auto;
+    padding: 18px;
+    background: var(--red);
+    color: var(--text);
+    text-align: center;
+    border-radius: 12px 12px 0 0;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .game-layout {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "campaigns players"
+            "start start"
+            "notes notes";
+        padding: 30px 20px;
+    }
+
+    .start-game-btn {
+        width: 300px;
+    }
+
+    .notes-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .game-layout {
+        display: flex;
+        flex-direction: column;
+        padding: 25px 15px;
+        gap: 25px;
+    }
+
+    .section-title h2 {
+        font-size: 21px;
+    }
+
+    .campaigns-content {
+        min-height: auto;
+    }
+
+    .start-game-btn {
+        width: 100%;
+    }
+
+    .notes-list {
+        grid-template-columns: 1fr;
+    }
+}
