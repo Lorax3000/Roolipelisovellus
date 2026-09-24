@@ -44,7 +44,7 @@ class CharacterModel{
         
         $stmt = $this->pdo->prepare($sql);
         
-        $user = 4;
+        $user = $_SESSION['user_id'];
         $campaign = 1;
         $level = 1;
 

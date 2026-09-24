@@ -2,41 +2,43 @@
 
 <body>
 
-    <h1>Sign Up</h1>
+<div class="meow">
+<h1>Sign Up</h1>
 
-    <form method="POST" action="../index.php?page=signupUser">
+<form method="POST" action="../index.php?page=signupUser">
 
-        <div>
-            <label>Username:</label>
-            <input type="text" name="user_name" required>
-        </div>
+    <div>
+        <label>Username:</label>
+        <input type="text" name="user_name" required>
+    </div>
 
-        <div>
-            <label>Email:</label>
-            <input type="email" name="user_email" required>
-        </div>
+    <div>
+        <label>Email:</label>
+        <input type="email" name="user_email" required>
+    </div>
 
-        <div>
-            <label>Password:</label>
-            <input type="password" name="user_pwd" required>
-        </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="user_pwd" required>
+    </div>
 
-        <button type="submit">Sign Up</button>
+    <button type="submit">Sign Up</button>
 
-    </form>
+</form>
 
-    <p>
-        Already have an account?
-        <a href="../index.php?page=login">
-            Log In
-        </a>
-    </p>
+<p>
+    Already have an account?
+    <a href="../index.php?page=login">
+        Log In
+    </a>
+</p>
 
-    <p>
-        <a href="../index.php?page=dashboard">
-            Back to Dashboard
-        </a>
-    </p>
+<p>
+    <a href="../index.php?page=dashboard">
+        Back to Dashboard
+    </a>
+</p>
+</div>
 
 </body>
 

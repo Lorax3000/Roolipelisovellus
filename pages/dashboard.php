@@ -1,86 +1,103 @@
 <?php include "includes/header.php"; ?>
 
 <body>
-
     <div class="dashboard">
 
         <?php if (!isset($_SESSION['user_id'])): ?>
 
-            <h1>Welcome!</h1>
+            <div class="dashboard-no-user">
+                <h1>Welcome!</h1>
 
-            <p>
-                Log in or create an account to manage your characters.
-            </p>
+                <p>
+                    Log in or create an account to manage your characters.
+                </p>
 
-            <a href="index.php?page=login">
-                <button>Log In</button>
-            </a>
+                <div class="user-login-buttons">
+                    <a href="index.php?page=login" class="user-login-button">
+                        <button>Log In</button>
+                    </a>
 
-            <a href="index.php?page=signup">
-                <button>Sign Up</button>
-            </a>
+                    <a href="index.php?page=signup" class="user-login-button">
+                        <button>Sign Up</button>
+                    </a>
+                </div>
+            </div>
 
         <?php else: ?>
 
-            <h1>
-                Welcome, <?= htmlspecialchars($_SESSION['user_name']) ?>!
-            </h1>
+            <div class="dashboard-user">
 
-            <a href="index.php?page=showCreateCharacter">
-                <button>Create Character</button>
-            </a>
+                <div class="dashboard-header">
+                    <h1>
+                        Welcome, <?= htmlspecialchars($_SESSION['user_name']) ?>!
+                    </h1>
 
-            <h2>Your Characters</h2>
+                    <a href="index.php?page=showCreateCharacter">
+                        <button class="create-character-button">
+                            + Create Character
+                        </button>
+                    </a>
+                </div>
 
-            <?php if (empty($characters)): ?>
+                <h2>Your Characters</h2>
 
-                <p>You don't have any characters yet.</p>
+                <?php if (empty($characters)): ?>
 
-            <?php else: ?>
+                    <p class="no-characters">
+                        You don't have any characters yet.
+                    </p>
 
-                <?php foreach ($characters as $character): ?>
+                <?php else: ?>
 
-                    <div class="character">
+                    <div class="character-list">
 
-                        <h3>
-                            <?= htmlspecialchars($character['character_name']) ?>
-                        </h3>
+                        <?php foreach ($characters as $character): ?>
 
-                        <p>
-                            Class:
-                            <?= htmlspecialchars($character['character_class']) ?>
-                        </p>
+                            <div class="character">
 
-                        <p>
-                            Race:
-                            <?= htmlspecialchars($character['character_race']) ?>
-                        </p>
+                                <h3>
+                                    <?= htmlspecialchars($character['character_name']) ?>
+                                </h3>
 
-                        <p>
-                            Level:
-                            <?= htmlspecialchars($character['character_level']) ?>
-                        </p>
+                                <p>
+                                    <strong>Class:</strong>
+                                    <?= htmlspecialchars($character['character_class']) ?>
+                                </p>
 
-                        <a href="index.php?page=showCharacter&id=<?= $character['character_id'] ?>">
-                            View Character
-                        </a>
+                                <p>
+                                    <strong>Race:</strong>
+                                    <?= htmlspecialchars($character['character_race']) ?>
+                                </p>
+
+                                <p>
+                                    <strong>Level:</strong>
+                                    <?= htmlspecialchars($character['character_level']) ?>
+                                </p>
+
+                                <a
+                                    href="index.php?page=showCharacter&id=<?= $character['character_id'] ?>"
+                                    class="view-character"
+                                >
+                                    View Character →
+                                </a>
+
+                            </div>
+
+                        <?php endforeach; ?>
 
                     </div>
 
-                <?php endforeach; ?>
+                <?php endif; ?>
 
-            <?php endif; ?>
+                <a href="index.php?page=logout">
+                    <button class="logout-button">Log Out</button>
+                </a>
 
-            <br>
-
-            <a href="index.php?page=logout">
-                <button>Log Out</button>
-            </a>
+            </div>
 
         <?php endif; ?>
 
     </div>
-
 </body>
 
 <?php include "includes/footer.php"; ?>

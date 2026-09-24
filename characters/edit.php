@@ -1,4 +1,4 @@
-
+<?php include "includes/header.php"; ?>
 
 <div class="character_edit_form">
 <form method="POST" action="../index.php?page=editCharacter">
@@ -67,5 +67,13 @@
     </button>
 
 </form>
+
+<p>
+    <a href="../index.php?page=dashboard">
+        Back to Dashboard
+    </a>
+</p>
+
 </div>
 
+<?php include "includes/footer.php"; ?>

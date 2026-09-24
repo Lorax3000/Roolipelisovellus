@@ -1,3 +1,4 @@
+<?php include "includes/header.php"; ?>
 
 <body>
 
@@ -107,4 +108,12 @@
 
     </div>
 
+<p>
+    <a href="../index.php?page=dashboard">
+        Back to Dashboard
+    </a>
+</p>
+
 </body>
+
+<?php include "includes/footer.php"; ?>
