@@ -21,22 +21,54 @@
 
     <div>
         <label>Class:</label>
-        <input
-            type="text"
-            name="character_class"
-            value="<?= htmlspecialchars($character['character_class']) ?>"
-            required
-        >
+
+        <select name="character_class" required>
+            <option value="1" <?= $character['character_class'] == '1' ? 'selected' : '' ?>>
+                1
+            </option>
+
+            <option value="2" <?= $character['character_class'] == '2' ? 'selected' : '' ?>>
+                2
+            </option>
+
+            <option value="3" <?= $character['character_class'] == '3' ? 'selected' : '' ?>>
+                3
+            </option>
+
+            <option value="4" <?= $character['character_class'] == '4' ? 'selected' : '' ?>>
+                4
+            </option>
+
+            <option value="5" <?= $character['character_class'] == '5' ? 'selected' : '' ?>>
+                5
+            </option>
+        </select>
     </div>
 
     <div>
         <label>Race:</label>
-        <input
-            type="text"
-            name="character_race"
-            value="<?= htmlspecialchars($character['character_race']) ?>"
-            required
-        >
+
+        <select name="character_race" required>
+            <option value="1" <?= $character['character_race'] === '1' ? 'selected' : '' ?>>
+                1
+            </option>
+
+            <option value="2" <?= $character['character_race'] === '2' ? 'selected' : '' ?>>
+                2
+            </option>
+
+            <option value="3" <?= $character['character_race'] === '3' ? 'selected' : '' ?>>
+                3
+            </option>
+
+            <option value="4" <?= $character['character_race'] === '4' ? 'selected' : '' ?>>
+                4
+            </option>
+
+            <option value="5" <?= $character['character_race'] === '5' ? 'selected' : '' ?>>
+                5
+            </option>
+        </select>
     </div>
 
     <div>

@@ -56,7 +56,7 @@ class CharacterModel{
         $intelligence = rand(1, 20);
         $charisma = rand(1, 20);
         
-        $notes = "Yeah";
+        $notes = "";
         $status = "alive";
         
         
