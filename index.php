@@ -2,6 +2,7 @@
 session_start();
 require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/characters/characterController.php';
+require_once __DIR__ . '/campaigns/campaignController.php';
 require_once __DIR__ . '/users/userController.php';
 
 $page = $_GET['page'] ?? 'dashboard';
@@ -9,6 +10,7 @@ $page = $_GET['page'] ?? 'dashboard';
 $pdo = connect();
 
 $characterController = new CharacterController($pdo);
+$campaignController = new CampaignController($pdo);
 $userController = new UserController($pdo);
 
 switch ($page) {
@@ -61,6 +63,14 @@ switch ($page) {
 
     case 'logout':
         $userController->logout();
+        break;
+
+    case 'showCampaignPage':
+        $campaignController->showCampaignPage();
+        break;
+
+    case 'createCampaign':
+        $campaignController->showCreateCampaign();
         break;
 
     default:
