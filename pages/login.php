@@ -2,7 +2,9 @@
 
 <body>
 
-    <h1>Log In</h1>
+<div class="meow">
+
+<h1>Log In</h1>
 
     <form method="POST" action="../index.php?page=loginUser">
 
@@ -26,6 +28,14 @@
             Sign Up
         </a>
     </p>
+
+    <p>
+        <a href="../index.php?page=dashboard">
+            Back to Dashboard
+        </a>
+    </p>
+
+</div>
 
 </body>
 

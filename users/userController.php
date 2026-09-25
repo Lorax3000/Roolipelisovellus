@@ -54,7 +54,7 @@ class UserController
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['user_name'] = $user['username'];
 
-                header("Location: index.php?page=home");
+                header("Location: index.php?page=dashboard");
                 exit();
 
             } else {
@@ -68,11 +68,7 @@ class UserController
         session_unset();
         session_destroy();
 
-        header("Location: index.php?page=home");
+        header("Location: index.php?page=dashboard");
         exit();
-    }
-
-    public function home(){
-        require 'pages/home.php';
     }
 }
