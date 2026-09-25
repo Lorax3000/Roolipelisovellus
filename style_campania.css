@@ -1,0 +1,250 @@
+
+:root {
+    --bg: #070707;
+    --red: #26000C;
+    --gold: #FFC86E;
+    --text: #F5E8D0;
+    --border: #4A1625;
+    --card: #0d0d0d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Kyiv*Type Titling", serif;
+}
+
+/* HEADER */
+
+header {
+    min-height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--red);
+    color: var(--text);
+    text-align: center;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 20px rgba(38, 0, 12, .4);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+/* TITLES */
+
+h1, h2, h3 {
+    color: var(--gold);
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+/* BUTTONS */
+
+#btn {
+    text-align: center;
+}
+
+button,
+input[type="submit"],
+input[type="button"] {
+    padding: 12px 28px;
+    background: var(--red);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background: var(--gold);
+    color: var(--red);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255, 200, 110, .25);
+}
+
+/* CAMPAIGNS */
+
+#omat_kampanjat {
+    text-align: center;
+}
+
+#kampanjaList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 50px;
+    padding: 0 20px;
+}
+
+.kampanja {
+    position: relative;
+    width: 250px;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .4);
+    transition: .2s;
+}
+
+.kampanja:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, .5),
+        0 0 12px rgba(255, 200, 110, .08);
+}
+
+.kampanja h3 {
+    margin-top: 0;
+}
+
+.kampanja p {
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* FORM */
+
+#kampanjaForm {
+    position: relative;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: center;
+}
+
+input,
+textarea,
+select {
+    padding: 10px;
+    background: #111;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: inherit;
+    outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 8px rgba(255, 200, 110, .15);
+}
+
+/* CLOSE BUTTONS */
+
+.close-btn,
+.poista-kampanja,
+.muistiinpano-sulje {
+    background: none;
+    border: none;
+    color: var(--gold);
+    line-height: 1;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.poista-kampanja:hover,
+.muistiinpano-sulje:hover {
+    background: none;
+    color: #fff;
+    transform: none;
+    box-shadow: none;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+}
+
+.poista-kampanja {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 24px;
+}
+
+.muistiinpano-sulje {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 24px;
+}
+
+/* NOTES */
+
+.muistiinpano {
+    position: relative;
+    margin: 15px 0;
+    padding: 15px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+}
+
+.muistiinpano h3 {
+    margin-top: 0;
+}
+
+.muistiinpano p {
+    margin-bottom: 0;
+    overflow-wrap: break-word;
+}
+
+#muistiinpanotMuokkaus {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.muokattava-muistiinpano {
+    display: block;
+    width: 100%;
+    min-height: 80px;
+    margin-bottom: 10px;
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: auto;
+    padding: 18px;
+    background: var(--red);
+    color: var(--text);
+    text-align: center;
+    border-radius: 12px 12px 0 0;
+}
