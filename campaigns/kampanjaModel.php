@@ -81,7 +81,7 @@ $stmt->execute([
 
     public function deleteKampanja($id)
         {
-        $sql = "DELETE FROM characters WHERE character_id = :id";
+        $sql = "DELETE FROM campaigns WHERE campaign_id = :id";
         
         $stmt = $this->pdo->prepare($sql);
         
