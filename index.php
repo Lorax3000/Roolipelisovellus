@@ -1,12 +1,93 @@
 <?php
+
 session_start();
 require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/characters/characterController.php';
 require_once __DIR__ . '/users/userController.php';
+require_once __DIR__ . '/campaigns/kampanjaController.php';
+
 
 $page = $_GET['page'] ?? 'dashboard';
 
 $pdo = connect();
+
+$KampanjaController = new KampanjaController($pdo);
+
+if ($page === 'kampanja') {
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $action = $_POST['action'] ?? '';
+
+        if ($action === 'create') {
+
+            $KampanjaController->createKampanja();
+
+        }
+
+        elseif ($action === 'update') {
+
+            $KampanjaController->updateKampanja();
+
+        }
+
+        elseif ($action === 'delete') {
+
+            $KampanjaController->deleteKampanja();
+
+        }
+
+        else {
+
+            $KampanjaController->index();
+
+        }
+
+    }
+    else {
+
+        $action = $_GET['action'] ?? '';
+
+        if ($action === 'create') {
+
+            $KampanjaController->createForm();
+
+        }
+
+        elseif ($action === 'edit') {
+
+            $id = $_GET['id'] ?? null;
+
+            if (!$id) {
+                die('Kampanjan ID puuttuu.');
+            }
+
+            $KampanjaController->editForm($id);
+
+        }
+
+        elseif ($action === 'show') {
+
+            $id = $_GET['id'] ?? null;
+
+            if (!$id) {
+                die('Kampanjan ID puuttuu.');
+            }
+
+            $KampanjaController->showKampanja($id);
+
+        }
+
+        else {
+
+            $KampanjaController->index();
+
+        }
+
+    }
+
+    exit;
+}
 
 $characterController = new CharacterController($pdo);
 $userController = new UserController($pdo);
