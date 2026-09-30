@@ -15,78 +15,93 @@ $KampanjaController = new KampanjaController($pdo);
 
 if ($page === 'kampanja') {
 
+    if ($page === 'kampanja') {
+
+    $action = $_POST['action'] ?? $_GET['action'] ?? '';
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $action = $_POST['action'] ?? '';
+        switch ($action) {
 
-        if ($action === 'create') {
+            case 'create':
+                $KampanjaController->createKampanja();
+                break;
 
-            $KampanjaController->createKampanja();
+            case 'update':
+                $KampanjaController->updateKampanja();
+                break;
 
+            case 'delete':
+                $KampanjaController->deleteKampanja();
+                break;
+
+            case 'addPlayer':
+                $KampanjaController->addPlayer();
+                break;
+
+            case 'updatePlayerStatus':
+                $KampanjaController->updatePlayerStatus();
+                break;
+
+            case 'deletePlayer':
+                $KampanjaController->deletePlayer();
+                break;
+
+            case 'addNote':
+                $KampanjaController->addNote();
+                break;
+
+            case 'updateNote':
+                $KampanjaController->updateNote();
+                break;
+
+            case 'deleteNote':
+                $KampanjaController->deleteNote();
+                break;
+
+            default:
+                $KampanjaController->index();
+                break;
         }
 
-        elseif ($action === 'update') {
+    } else {
 
-            $KampanjaController->updateKampanja();
+        switch ($action) {
 
+            case 'create':
+                $KampanjaController->createForm();
+                break;
+
+            case 'edit':
+
+                $id = $_GET['id'] ?? null;
+
+                if (!$id) {
+                    die('Kampanjan ID puuttuu.');
+                }
+
+                $KampanjaController->editForm($id);
+                break;
+
+            case 'show':
+
+                $id = $_GET['id'] ?? null;
+
+                if (!$id) {
+                    die('Kampanjan ID puuttuu.');
+                }
+
+                $KampanjaController->showKampanja($id);
+                break;
+
+            default:
+                $KampanjaController->index();
+                break;
         }
-
-        elseif ($action === 'delete') {
-
-            $KampanjaController->deleteKampanja();
-
-        }
-
-        else {
-
-            $KampanjaController->index();
-
-        }
-
-    }
-    else {
-
-        $action = $_GET['action'] ?? '';
-
-        if ($action === 'create') {
-
-            $KampanjaController->createForm();
-
-        }
-
-        elseif ($action === 'edit') {
-
-            $id = $_GET['id'] ?? null;
-
-            if (!$id) {
-                die('Kampanjan ID puuttuu.');
-            }
-
-            $KampanjaController->editForm($id);
-
-        }
-
-        elseif ($action === 'show') {
-
-            $id = $_GET['id'] ?? null;
-
-            if (!$id) {
-                die('Kampanjan ID puuttuu.');
-            }
-
-            $KampanjaController->showKampanja($id);
-
-        }
-
-        else {
-
-            $KampanjaController->index();
-
-        }
-
     }
 
     exit;
+}
 }
 
 $characterController = new CharacterController($pdo);

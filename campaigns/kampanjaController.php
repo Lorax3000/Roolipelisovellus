@@ -2,11 +2,9 @@
 
 require_once 'kampanjaModel.php';
 
-
 class KampanjaController
 {
     private $pdo;
-
 
     public function __construct($pdo)
     {
@@ -56,12 +54,12 @@ class KampanjaController
 
         $model = new KampanjaModel($this->pdo);
 
-
         $model->createKampanja(
             $campaign_desc,
             $campaign_name,
             $campaign_status
         );
+
 
         header(
             'Location: index.php?page=kampanja'
@@ -75,7 +73,6 @@ class KampanjaController
     {
         $model = new KampanjaModel($this->pdo);
 
-
         $kampanja = $model->getKampanja($id);
 
 
@@ -85,7 +82,6 @@ class KampanjaController
 
 
         $kampanjat = $model->getKampanjas();
-
 
         require 'kampanja.php';
     }
@@ -119,7 +115,6 @@ class KampanjaController
 
         $model = new KampanjaModel($this->pdo);
 
-
         $model->editKampanja(
             $campaign_id,
             $campaign_desc,
@@ -148,10 +143,7 @@ class KampanjaController
 
         $model = new KampanjaModel($this->pdo);
 
-
-        $model->deleteKampanja(
-            $campaign_id
-        );
+        $model->deleteKampanja($campaign_id);
 
 
         header(
@@ -162,10 +154,13 @@ class KampanjaController
     }
 
 
+    // =========================
+    // SHOW CAMPAIGN
+    // =========================
+
     public function showKampanja($id)
     {
         $model = new KampanjaModel($this->pdo);
-
 
         $kampanja = $model->getKampanja($id);
 
@@ -175,7 +170,215 @@ class KampanjaController
         }
 
 
+        $players = $model->getPlayers($id);
+
+        $notes = $model->getNotes($id);
+
+        $users = $model->getUsers();
+
+
         require 'kampanjan_sivu.php';
+    }
+
+
+    // =========================
+    // PLAYERS
+    // =========================
+
+    public function addPlayer()
+    {
+        $campaign_id = $_POST['campaign_id'] ?? null;
+
+        $user_id = $_POST['user_id'] ?? null;
+
+
+        if (!$campaign_id || !$user_id) {
+            die('Pelaajan tiedot puuttuvat.');
+        }
+
+
+        $model = new KampanjaModel($this->pdo);
+
+        $model->addPlayer(
+            $campaign_id,
+            $user_id
+        );
+
+
+        header(
+            'Location: index.php?page=kampanja&action=show&id='
+            . urlencode($campaign_id)
+        );
+
+        exit;
+    }
+
+
+    public function updatePlayerStatus()
+    {
+        $campaign_id = $_POST['campaign_id'] ?? null;
+
+        $member_id = $_POST['member_id'] ?? null;
+
+        $status = $_POST['status'] ?? 'alive';
+
+
+        if (!$campaign_id || !$member_id) {
+            die('Pelaajan tiedot puuttuvat.');
+        }
+
+
+        if (!in_array($status, ['alive', 'dead'])) {
+            $status = 'alive';
+        }
+
+
+        $model = new KampanjaModel($this->pdo);
+
+        $model->updatePlayerStatus(
+            $member_id,
+            $status
+        );
+
+
+        header(
+            'Location: index.php?page=kampanja&action=show&id='
+            . urlencode($campaign_id)
+        );
+
+        exit;
+    }
+
+
+    public function deletePlayer()
+    {
+        $campaign_id = $_POST['campaign_id'] ?? null;
+
+        $member_id = $_POST['member_id'] ?? null;
+
+
+        if (!$campaign_id || !$member_id) {
+            die('Pelaajan tiedot puuttuvat.');
+        }
+
+
+        $model = new KampanjaModel($this->pdo);
+
+        $model->deletePlayer($member_id);
+
+
+        header(
+            'Location: index.php?page=kampanja&action=show&id='
+            . urlencode($campaign_id)
+        );
+
+        exit;
+    }
+
+
+    // =========================
+    // NOTES
+    // =========================
+
+    public function addNote()
+    {
+        $campaign_id = $_POST['campaign_id'] ?? null;
+
+        $content = trim(
+            $_POST['note_content'] ?? ''
+        );
+
+
+        if (!$campaign_id) {
+            die('Kampanjan ID puuttuu.');
+        }
+
+
+        if ($content === '') {
+            die('Muistiinpano ei voi olla tyhjä.');
+        }
+
+
+        $model = new KampanjaModel($this->pdo);
+
+        $model->addNote(
+            $campaign_id,
+            $content
+        );
+
+
+        header(
+            'Location: index.php?page=kampanja&action=show&id='
+            . urlencode($campaign_id)
+        );
+
+        exit;
+    }
+
+
+    public function updateNote()
+    {
+        $campaign_id = $_POST['campaign_id'] ?? null;
+
+        $note_id = $_POST['note_id'] ?? null;
+
+        $content = trim(
+            $_POST['note_content'] ?? ''
+        );
+
+
+        if (!$campaign_id || !$note_id) {
+            die('Muistiinpanon tiedot puuttuvat.');
+        }
+
+
+        if ($content === '') {
+            die('Muistiinpano ei voi olla tyhjä.');
+        }
+
+
+        $model = new KampanjaModel($this->pdo);
+
+        $model->updateNote(
+            $note_id,
+            $content
+        );
+
+
+        header(
+            'Location: index.php?page=kampanja&action=show&id='
+            . urlencode($campaign_id)
+        );
+
+        exit;
+    }
+
+
+    public function deleteNote()
+    {
+        $campaign_id = $_POST['campaign_id'] ?? null;
+
+        $note_id = $_POST['note_id'] ?? null;
+
+
+        if (!$campaign_id || !$note_id) {
+            die('Muistiinpanon tiedot puuttuvat.');
+        }
+
+
+        $model = new KampanjaModel($this->pdo);
+
+        $model->deleteNote(
+            $note_id
+        );
+
+
+        header(
+            'Location: index.php?page=kampanja&action=show&id='
+            . urlencode($campaign_id)
+        );
+
+        exit;
     }
 }
 
