@@ -26,7 +26,7 @@ class KampanjaController
     {
         $model = new KampanjaModel($this->pdo);
 
-        $kampanjat = $model->getKampanjas();
+        $kampanja = $model->getKampanjas();
 
         require 'kampanja.php';
     }

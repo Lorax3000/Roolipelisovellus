@@ -159,6 +159,10 @@ switch ($page) {
         $userController->logout();
         break;
 
+    case 'index':
+        $KampanjaController->index();
+        break;
+
     default:
         $characterController->dashboard();
         break;

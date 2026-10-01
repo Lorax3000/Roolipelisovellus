@@ -7,7 +7,7 @@
 
     <title>Kampanjat</title>
 
-    <link rel="stylesheet" href="style_kampanja.css">
+    <link rel="stylesheet" href="campaigns/style_campania.css">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
         <h2>KAMPANJAT</h2>
 
         <a
-            href="../index.php?page=kampanja&action=create"
+            href="index.php?page=kampanja&action=create"
             class="create-button"
         >
             + LUO KAMPANJA

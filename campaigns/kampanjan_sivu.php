@@ -20,7 +20,7 @@ $users = $users ?? [];
 
     <link
         rel="stylesheet"
-        href="style_kampanjan_sivu.css"
+        href="campaigns/style_kampanjan_sivu.css"
     >
 </head>
 

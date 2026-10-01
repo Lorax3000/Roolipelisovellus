@@ -16,16 +16,19 @@ class KampanjaModel
         $campaign_status
     ) {
         $sql = "INSERT INTO campaigns
-                (campaign_desc, campaign_name, campaign_status)
+                (campaign_desc, campaign_name, campaign_status, gm_id)
                 VALUES
-                (:campaign_desc, :campaign_name, :campaign_status)";
+                (:campaign_desc, :campaign_name, :campaign_status, :gm_id)";
 
         $stmt = $this->pdo->prepare($sql);
+
+        $gm_id = $_SESSION['user_id'];
 
         $stmt->execute([
             ':campaign_desc' => $campaign_desc,
             ':campaign_name' => $campaign_name,
-            ':campaign_status' => $campaign_status
+            ':campaign_status' => $campaign_status,
+            ':gm_id' => $gm_id
         ]);
     }
 
@@ -110,15 +113,15 @@ class KampanjaModel
     public function getPlayers($campaign_id)
     {
         $sql = "SELECT
-                    cm.member_id,
-                    cm.member_campaign,
-                    cm.member_user,
-                    cm.member_status,
+                    m.member_id,
+                    m.member_campaign,
+                    m.member_user,
+                    m.member_status,
                     u.username
-                FROM campaign_members cm
+                FROM members m
                 INNER JOIN users u
-                    ON u.user_id = cm.member_user
-                WHERE cm.member_campaign = :campaign_id
+                    ON u.user_id = m.member_user
+                WHERE m.member_campaign = :campaign_id
                 ORDER BY u.username";
 
         $stmt = $this->pdo->prepare($sql);
@@ -135,7 +138,7 @@ class KampanjaModel
     {
         // Проверяем, нет ли уже этого игрока
         $sql = "SELECT member_id
-                FROM campaign_members
+                FROM members
                 WHERE member_campaign = :campaign_id
                 AND member_user = :user_id";
 
@@ -151,7 +154,7 @@ class KampanjaModel
         }
 
 
-        $sql = "INSERT INTO campaign_members
+        $sql = "INSERT INTO members
                 (
                     member_campaign,
                     member_user,
@@ -175,7 +178,7 @@ class KampanjaModel
 
     public function updatePlayerStatus($member_id, $status)
     {
-        $sql = "UPDATE campaign_members
+        $sql = "UPDATE members
                 SET member_status = :status
                 WHERE member_id = :member_id";
 
@@ -190,7 +193,7 @@ class KampanjaModel
 
     public function deletePlayer($member_id)
     {
-        $sql = "DELETE FROM campaign_members
+        $sql = "DELETE FROM members
                 WHERE member_id = :member_id";
 
         $stmt = $this->pdo->prepare($sql);
