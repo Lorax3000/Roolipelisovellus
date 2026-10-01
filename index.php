@@ -9,8 +9,21 @@ require_once __DIR__ . '/campaigns/kampanjaController.php';
 
 $page = $_GET['page'] ?? 'dashboard';
 
+if(
+    !isset($_SESSION['user_id']) &&
+    $page !== 'dashboard' &&
+    $page !== 'login' &&
+    $page !== 'signup' &&
+    $page !== 'loginUser' &&
+    $page !== 'singupUser'
+) {
+    header("Location: index.php?page=dashboard");
+}
+
 $pdo = connect();
 
+$characterController = new CharacterController($pdo);
+$userController = new UserController($pdo);
 $KampanjaController = new KampanjaController($pdo);
 
 if ($page === 'kampanja') {
@@ -60,7 +73,7 @@ if ($page === 'kampanja') {
                 break;
 
             default:
-                $KampanjaController->index();
+                $KampanjaController->campaigns();
                 break;
         }
 
@@ -95,7 +108,7 @@ if ($page === 'kampanja') {
                 break;
 
             default:
-                $KampanjaController->index();
+                $KampanjaController->campaigns();
                 break;
         }
     }
@@ -103,9 +116,6 @@ if ($page === 'kampanja') {
     exit;
 }
 }
-
-$characterController = new CharacterController($pdo);
-$userController = new UserController($pdo);
 
 switch ($page) {
 
@@ -159,8 +169,8 @@ switch ($page) {
         $userController->logout();
         break;
 
-    case 'index':
-        $KampanjaController->index();
+    case 'campaigns':
+        $KampanjaController->campaigns();
         break;
 
     default:

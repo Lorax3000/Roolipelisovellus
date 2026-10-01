@@ -87,11 +87,34 @@ class KampanjaModel
 
     public function deleteKampanja($id)
     {
+        $sql = "DELETE FROM campaign_notes
+                WHERE note_campaign = :id";
+    
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':id' => $id
+        ]);
+    
+        $sql = "DELETE FROM members
+                WHERE member_campaign = :id";
+    
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':id' => $id
+        ]);
+    
+        $sql = "DELETE FROM characters
+                WHERE character_campaign = :id";
+    
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':id' => $id
+        ]);
+    
         $sql = "DELETE FROM campaigns
                 WHERE campaign_id = :id";
-
+    
         $stmt = $this->pdo->prepare($sql);
-
         $stmt->execute([
             ':id' => $id
         ]);

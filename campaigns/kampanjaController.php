@@ -12,7 +12,7 @@ class KampanjaController
     }
 
 
-    public function index()
+    public function campaigns()
     {
         $model = new KampanjaModel($this->pdo);
 
@@ -72,17 +72,18 @@ class KampanjaController
     public function editForm($id)
     {
         $model = new KampanjaModel($this->pdo);
-
         $kampanja = $model->getKampanja($id);
-
-
+    
         if (!$kampanja) {
-            die('Kampanjaa ei löytynyt.');
+            die('Campaign not found');
         }
-
-
+    
+        if ($kampanja['gm_id'] != $_SESSION['user_id']) {
+            die('You are not authorized to change this.');
+        }
+    
         $kampanjat = $model->getKampanjas();
-
+    
         require 'kampanja.php';
     }
 

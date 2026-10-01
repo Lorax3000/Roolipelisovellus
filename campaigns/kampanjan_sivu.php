@@ -1,38 +1,23 @@
 <?php
 $kampanja = $kampanja ?? [];
 $users = $users ?? [];
+
+include "includes/header.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="fi">
-
-<head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
+<title>
         <?= htmlspecialchars($kampanja['campaign_name'] ?? '') ?>
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="campaigns/style_kampanjan_sivu.css"
-    >
-</head>
-
+</title>
 
 <body>
 
-<header>
-    <h1>WEB</h1>
-</header>
-
-
 <main class="game-layout">
+
+    <div class="back-button">
+        <a href="index.php?page=kampanja">
+            ← BACK TO CAMPAIGNS
+        </a>
+    </div>
 
 
     <section class="campaigns-section">
@@ -50,7 +35,7 @@ $users = $users ?? [];
 
         <div class="campaigns-content">
 
-            <h3>KAMPANJAN KUVAUS</h3>
+            <h3>Campaign description</h3>
 
             <p>
                 <?= nl2br(
@@ -78,16 +63,16 @@ $users = $users ?? [];
 
         <div class="section-title">
 
-            <h2>PELINOHJAAJA</h2>
+            <h2>Game Master</h2>
 
         </div>
 
 
         <div class="players-header">
 
-            <h3>PLAYERS</h3>
+            <h3>Players</h3>
 
-            <h3>STATUS</h3>
+            <h3>Status</h3>
 
         </div>
 
@@ -97,7 +82,7 @@ $users = $users ?? [];
 
             <?php if (empty($players)): ?>
 
-                <p>Ei pelaajia vielä.</p>
+                <p>No players yet.</p>
 
             <?php else: ?>
 
@@ -256,7 +241,7 @@ $users = $users ?? [];
                 >
 
                     <option value="">
-                        -- VALITSE PELAAJA --
+                        -- SELECT PLAYER --
                     </option>
 
 
@@ -283,7 +268,7 @@ $users = $users ?? [];
                     type="submit"
                     class="add-player-btn"
                 >
-                    + ADD PLAYER
+                    + Add player
                 </button>
 
             </form>
@@ -310,7 +295,7 @@ $users = $users ?? [];
 
         <div class="section-title">
 
-            <h2>MUISTIINPANOT</h2>
+            <h2>Notes</h2>
 
         </div>
 
@@ -338,7 +323,7 @@ $users = $users ?? [];
 
             <textarea
                 name="note_content"
-                placeholder="Kirjoita muistiinpano..."
+                placeholder="I love this game..."
                 required
             ></textarea>
 
@@ -355,7 +340,7 @@ $users = $users ?? [];
 
             <?php if (empty($notes)): ?>
 
-                <p>Ei muistiinpanoja vielä.</p>
+                <p>No notes yet.</p>
 
             <?php else: ?>
 
@@ -365,7 +350,7 @@ $users = $users ?? [];
                     <div class="muistiinpano">
 
 
-                        <h3>MUISTIINPANO</h3>
+                        <h3>Notes</h3>
 
 
                         <p>
@@ -428,7 +413,7 @@ $users = $users ?? [];
 
 
                                 <button type="submit">
-                                    EDIT
+                                    Edit
                                 </button>
 
                             </form>
@@ -437,7 +422,7 @@ $users = $users ?? [];
                             <form
                                 method="POST"
                                 action="index.php?page=kampanja"
-                                onsubmit="return confirm('Haluatko varmasti poistaa muistiinpanon?');"
+                                onsubmit="return confirm('Do you really want to delete this note?');"
                             >
 
                                 <input
@@ -487,13 +472,4 @@ $users = $users ?? [];
 
     </section>
 
-</main>
-
-
-<footer>
-    Roolipelisovellus - 2026
-</footer>
-
-</body>
-
-</html>
+<?php include "includes/footer.php"; ?>

@@ -1,34 +1,21 @@
-<!DOCTYPE html>
-<html lang="fi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Kampanjat</title>
-
-    <link rel="stylesheet" href="campaigns/style_campania.css">
-</head>
-
-<body>
-
-<header>
-    <h1>WEB</h1>
-</header>
-
+<?php include "includes/header.php"; ?>
 
 <main>
 
 
     <div class="campaign-header">
 
-        <h2>KAMPANJAT</h2>
+        <h2>CAMPAIGNS</h2>
+
+        <a href="index.php?page=dashboard">
+            Dashboard
+        </a>
 
         <a
             href="index.php?page=kampanja&action=create"
             class="create-button"
         >
-            + LUO KAMPANJA
+            + CREATE CAMPAIGN
         </a>
 
     </div>
@@ -40,7 +27,7 @@
 
             <?php if (!empty($kampanja['campaign_id'])): ?>
 
-                <h2>MUOKKAA KAMPANJAA</h2>
+                <h2>Edit campaign</h2>
 
                 <form
                     method="POST"
@@ -61,7 +48,7 @@
 
             <?php else: ?>
 
-                <h2>LUO UUSI KAMPANJA</h2>
+                <h2>Create new campaign</h2>
 
                 <form
                     method="POST"
@@ -80,7 +67,7 @@
                 <div class="form-group">
 
                     <label for="campaign_name">
-                        Kampanjan nimi
+                        Campaign name
                     </label>
 
                     <input
@@ -96,7 +83,7 @@
                 <div class="form-group">
 
                     <label for="campaign_desc">
-                        Kampanjan kuvaus
+                        Campaign description
                     </label>
 
                     <textarea
@@ -149,11 +136,11 @@
 
                         <?php if (!empty($kampanja['campaign_id'])): ?>
 
-                            TALLENNA MUUTOKSET
+                            Save changes
 
                         <?php else: ?>
 
-                            LUO KAMPANJA
+                            Create
 
                         <?php endif; ?>
 
@@ -161,7 +148,7 @@
 
 
                     <a href="../index.php?page=kampanja">
-                        PERUUTA
+                        Cancel
                     </a>
 
                 </div>
@@ -178,7 +165,7 @@
 
         <?php if (empty($kampanjat)): ?>
 
-            <p>Ei kampanjoita vielä.</p>
+            <p>No campaigns yet.</p>
 
         <?php else: ?>
 
@@ -223,14 +210,14 @@
                         <a
                             href="../index.php?page=kampanja&action=show&id=<?= htmlspecialchars($kampanjaItem['campaign_id']) ?>"
                         >
-                            AVAA
+                            Open
                         </a>
 
 
                         <a
                             href="../index.php?page=kampanja&action=edit&id=<?= htmlspecialchars($kampanjaItem['campaign_id']) ?>"
                         >
-                            MUOKKAA
+                            Edit
                         </a>
 
 
@@ -253,7 +240,7 @@
                             >
 
                             <button type="submit">
-                                POISTA
+                                Delete
                             </button>
 
                         </form>
@@ -270,12 +257,4 @@
 
     </section>
 
-</main>
-
-
-<footer>
-    Roolipelisovellus - 2026
-</footer>
-
-</body>
-</html>
+<?php include "includes/footer.php"; ?>
