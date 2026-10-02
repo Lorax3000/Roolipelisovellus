@@ -180,29 +180,52 @@ class KampanjaController
     public function showKampanja($id)
     {
         $model = new KampanjaModel($this->pdo);
-
+    
         $kampanja = $model->getKampanja($id);
-
-        if ($id == 4) {
-            die('This one is off premises so go back :)');
-        }
-
-
+    
         if (!$kampanja) {
             die('Kampanjaa ei löytynyt.');
         }
-
-
+    
         $players = $model->getPlayers($id);
-
+        $characters = $model->getCharactersByCampaign($id);
         $notes = $model->getNotes($id);
-
         $users = $model->getUsers();
-
-
+    
+        $user_characters = [];
+    
+        if (isset($_SESSION['user_id'])) {
+            $user_characters = $model->getCharactersByUser(
+                $_SESSION['user_id']
+            );
+        }
+    
         require 'kampanjan_sivu.php';
     }
 
+    public function addCharacter()
+    {
+        $campaign_id = $_POST['campaign_id'] ?? null;
+        $character_id = $_POST['character_id'] ?? null;
+    
+        if (!$campaign_id || !$character_id) {
+            die('Hahmon tiedot puuttuvat.');
+        }
+    
+        $model = new KampanjaModel($this->pdo);
+    
+        $model->addCharacterToCampaign(
+            $character_id,
+            $campaign_id
+        );
+    
+        header(
+            'Location: index.php?page=kampanja&action=show&id='
+            . urlencode($campaign_id)
+        );
+    
+        exit;
+    }
 
     // =========================
     // PLAYERS

@@ -23,14 +23,30 @@
                     <div class="character-card">
 
                         <h3>
-                            <?= htmlspecialchars($character['character_name']) ?>
+                            <?= htmlspecialchars(
+                                $character['character_name']
+                            ) ?>
                         </h3>
 
                         <p>
                             ❤️ HP:
-                            <?= htmlspecialchars($character['character_hp']) ?>
+
+                            <?= htmlspecialchars(
+                                $character['character_health']
+                            ) ?>
+
                             /
-                            <?= htmlspecialchars($character['character_max_hp']) ?>
+
+                            <?= htmlspecialchars(
+                                $character['character_max_hp']
+                            ) ?>
+                        </p>
+
+                        <p>
+                            👤
+                            <?= htmlspecialchars(
+                                $character['username']
+                            ) ?>
                         </p>
 
                     </div>
@@ -49,12 +65,18 @@
 
         <div class="enemy-card">
 
-            <h2>👹 <?= htmlspecialchars($enemy['name']) ?></h2>
+            <h2>
+                👹
+                <?= htmlspecialchars($enemy['name']) ?>
+            </h2>
 
             <p>
                 ❤️ HP:
+
                 <?= htmlspecialchars($enemy['hp']) ?>
+
                 /
+
                 <?= htmlspecialchars($enemy['max_hp']) ?>
             </p>
 
@@ -63,9 +85,25 @@
     </section>
 
 
-    <button type="button">
+    <form
+    method="POST"
+    action="index.php?page=attack"
+    >
+
+    <input
+        type="hidden"
+        name="campaign_id"
+        value="<?= htmlspecialchars($campaign_id) ?>"
+    >
+
+    <button
+        type="submit"
+        class="attack-button"
+    >
         ⚔️ ATTACK
     </button>
+
+</form>
 
 </main>
 

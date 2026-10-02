@@ -164,46 +164,109 @@ class KampanjaModel
                 FROM members
                 WHERE member_campaign = :campaign_id
                 AND member_user = :user_id";
-        
+
         $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute([
-            'campaign_id' => $campaign_id,
-            'user_id' => $user_id
+            ':campaign_id' => $campaign_id,
+            ':user_id' => $user_id
         ]);
 
-        if ($stmt->fetch()){
+        if ($stmt->fetch()) {
             return;
         }
 
         $sql = "INSERT INTO members
-                (member_campaign,
-                member_user,
-                member_status)
+                (
+                    member_campaign,
+                    member_user,
+                    member_status
+                )
                 VALUES
-                (:campaign_id,
-                :user_id,
-                'alive')";
+                (
+                    :campaign_id,
+                    :user_id,
+                    'alive'
+                )";
 
         $stmt = $this->pdo->prepare($sql);
-        
-        $stmt->execute([
-            'campaign_id' => $campaign_id,
-            'user_id' => $user_id
-        ]);
-        
-        $sql = "UPDATE characters
-                SET character_campaign = :campaign_id
-                WHERE character_user = :user_id";
 
-        $stmt = $this->pdo->prepare($sql);
-        
         $stmt->execute([
-            'campaign_id' => $campaign_id,
-            'user_id' => $user_id
+            ':campaign_id' => $campaign_id,
+            ':user_id' => $user_id
         ]);
     }
 
+    public function getCharactersByUser($user_id)
+    {
+        $sql = "SELECT character_id, character_name
+                FROM characters
+                WHERE character_user = :user_id
+                ORDER BY character_name";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':user_id' => $user_id
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getCharactersByCampaign($campaign_id)
+    {
+        $sql = "SELECT
+                    c.character_id,
+                    c.character_name,
+                    c.character_user,
+                    u.username
+                FROM characters c
+                INNER JOIN users u
+                    ON u.user_id = c.character_user
+                WHERE c.character_campaign = :campaign_id
+                ORDER BY c.character_name";
+    
+        $stmt = $this->pdo->prepare($sql);
+    
+        $stmt->execute([
+            ':campaign_id' => $campaign_id
+        ]);
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllCharacters()
+    {
+        $sql = "SELECT
+                    c.character_id,
+                    c.character_name,
+                    c.character_user,
+                    u.username
+                FROM characters c
+                INNER JOIN users u
+                    ON u.user_id = c.character_user
+                ORDER BY u.username, c.character_name";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function addCharacterToCampaign($character_id, $campaign_id)
+    {
+        $sql = "UPDATE characters
+                SET character_campaign = :campaign_id
+                WHERE character_id = :character_id";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':campaign_id' => $campaign_id,
+            ':character_id' => $character_id
+        ]);
+    }
 
     public function updatePlayerStatus($member_id, $status)
     {

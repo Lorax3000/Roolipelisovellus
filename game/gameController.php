@@ -14,16 +14,61 @@ class GameController
     public function game($campaign_id)
     {
         $model = new GameModel($this->pdo);
+    
+        $characters = $model->getCharactersByCampaign($campaign_id);
+        
+        if (
+            !isset($_SESSION['enemy']) ||
+            $_SESSION['enemy']['hp'] <= 0
+        ) {
+            $_SESSION['enemy'] = [
+                'name' => 'Goblin',
+                'hp' => 50,
+                'max_hp' => 50
+            ];
+        }
+    
+        $enemy = $_SESSION['enemy'];
+    
+        require 'game.php';
+    }
+
+    public function attack($campaign_id)
+{
+    $model = new GameModel($this->pdo);
+
+    $player_damage = rand(5, 15);
+
+    $_SESSION['enemy']['hp'] -= $player_damage;
+
+    if ($_SESSION['enemy']['hp'] < 0) {
+        $_SESSION['enemy']['hp'] = 0;
+    }
+
+    if ($_SESSION['enemy']['hp'] > 0) {
+
+        $enemy_damage = rand(3, 10);
 
         $characters = $model->getCharactersByCampaign($campaign_id);
 
-        $enemy = [
-            'name' => 'Goblin',
-            'hp' => 15,
-            'max_hp' => 15
-        ];
+        if (!empty($characters)) {
 
-        require 'game/game.php';
+            $character_id = $characters[0]['character_id'];
+
+            $model->damageCharacter(
+                $character_id,
+                $enemy_damage,
+                $campaign_id
+            );
+        }
     }
+
+    header(
+        'Location: index.php?page=game&campaign_id='
+        . urlencode($campaign_id)
+    );
+
+    exit;
+}
 }
 ?>

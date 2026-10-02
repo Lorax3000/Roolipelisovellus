@@ -1,12 +1,18 @@
 <?php
+
 $kampanja = $kampanja ?? [];
 $users = $users ?? [];
+$players = $players ?? [];
+$characters = $characters ?? [];
+$notes = $notes ?? [];
+$user_characters = $user_characters ?? [];
 
 include "includes/header.php";
+
 ?>
 
 <title>
-        <?= htmlspecialchars($kampanja['campaign_name'] ?? '') ?>
+    <?= htmlspecialchars($kampanja['campaign_name'] ?? '') ?>
 </title>
 
 <body>
@@ -14,11 +20,12 @@ include "includes/header.php";
 <main class="game-layout">
 
     <div class="back-button">
+
         <a href="index.php?page=kampanja">
             ← BACK TO CAMPAIGNS
         </a>
-    </div>
 
+    </div>
 
     <section class="campaigns-section">
 
@@ -26,7 +33,7 @@ include "includes/header.php";
 
             <h2>
                 <?= htmlspecialchars(
-                    $kampanja['campaign_name']
+                    $kampanja['campaign_name'] ?? ''
                 ) ?>
             </h2>
 
@@ -47,17 +54,18 @@ include "includes/header.php";
 
 
             <p>
+
                 <strong>Status:</strong>
 
                 <?= htmlspecialchars(
-                    $kampanja['campaign_status']
+                    $kampanja['campaign_status'] ?? ''
                 ) ?>
+
             </p>
 
         </div>
 
     </section>
-
 
     <section class="players-section">
 
@@ -79,18 +87,15 @@ include "includes/header.php";
 
         <div class="players-list">
 
-
             <?php if (empty($players)): ?>
 
                 <p>No players yet.</p>
 
             <?php else: ?>
 
-
                 <?php foreach ($players as $player): ?>
 
                     <div class="player-row">
-
 
                         <span class="player-name">
 
@@ -102,7 +107,6 @@ include "includes/header.php";
 
 
                         <div class="player-actions">
-
 
                             <form
                                 method="POST"
@@ -131,7 +135,6 @@ include "includes/header.php";
                                     ) ?>"
                                 >
 
-
                                 <input
                                     type="hidden"
                                     name="status"
@@ -145,9 +148,11 @@ include "includes/header.php";
 
                                 <button
                                     type="submit"
-                                    class="player-status <?= $player['member_status'] === 'alive'
+                                    class="player-status <?= 
+                                        $player['member_status'] === 'alive'
                                         ? 'alive'
-                                        : 'dead' ?>"
+                                        : 'dead'
+                                    ?>"
                                 >
 
                                     <?= strtoupper(
@@ -159,7 +164,6 @@ include "includes/header.php";
                                 </button>
 
                             </form>
-
 
                             <form
                                 method="POST"
@@ -194,7 +198,9 @@ include "includes/header.php";
                                     type="submit"
                                     class="remove-player"
                                 >
+
                                     ×
+
                                 </button>
 
                             </form>
@@ -206,14 +212,11 @@ include "includes/header.php";
 
                 <?php endforeach; ?>
 
-
             <?php endif; ?>
-
 
         </div>
 
-
-        <div class="add-player-wrapper">
+        <div class="add-character-wrapper">
 
             <form
                 method="POST"
@@ -223,7 +226,7 @@ include "includes/header.php";
                 <input
                     type="hidden"
                     name="action"
-                    value="addPlayer"
+                    value="addCharacter"
                 >
 
                 <input
@@ -236,25 +239,25 @@ include "includes/header.php";
 
 
                 <select
-                    name="user_id"
+                    name="character_id"
                     required
                 >
 
                     <option value="">
-                        -- SELECT PLAYER --
+                        -- SELECT CHARACTER --
                     </option>
 
 
-                    <?php foreach ($users as $user): ?>
+                    <?php foreach ($user_characters as $character): ?>
 
                         <option
                             value="<?= htmlspecialchars(
-                                $user['user_id']
+                                $character['character_id']
                             ) ?>"
                         >
 
                             <?= htmlspecialchars(
-                                $user['username']
+                                $character['character_name']
                             ) ?>
 
                         </option>
@@ -268,7 +271,9 @@ include "includes/header.php";
                     type="submit"
                     class="add-player-btn"
                 >
-                    + Add player
+
+                    + ADD CHARACTER
+
                 </button>
 
             </form>
@@ -277,19 +282,72 @@ include "includes/header.php";
 
     </section>
 
+    <section class="characters-section">
 
+        <div class="section-title">
+
+            <h2>Characters</h2>
+
+        </div>
+
+
+        <div class="characters-list">
+
+            <?php if (empty($characters)): ?>
+
+                <p>No characters yet.</p>
+
+            <?php else: ?>
+
+                <?php foreach ($characters as $character): ?>
+
+                    <div class="character-row">
+
+
+                        <span class="character-name">
+
+                            <?= htmlspecialchars(
+                                $character['character_name']
+                            ) ?>
+
+                        </span>
+
+
+                        <span class="character-owner">
+
+                            Player:
+
+                            <?= htmlspecialchars(
+                                $character['username']
+                            ) ?>
+
+                        </span>
+
+
+                    </div>
+
+                <?php endforeach; ?>
+
+            <?php endif; ?>
+
+        </div>
+
+    </section>
 
     <section class="start-section">
 
         <a
-        href="index.php?page=game&campaign_id=<?= htmlspecialchars($kampanja['campaign_id']) ?>"
-        class="start-game-btn"
+            href="index.php?page=game&campaign_id=<?= htmlspecialchars(
+                $kampanja['campaign_id']
+            ) ?>"
+            class="start-game-btn"
         >
+
             START GAME
+
         </a>
 
     </section>
-
 
     <section class="notes-section">
 
@@ -298,7 +356,6 @@ include "includes/header.php";
             <h2>Notes</h2>
 
         </div>
-
 
         <form
             method="POST"
@@ -329,21 +386,20 @@ include "includes/header.php";
 
 
             <button type="submit">
+
                 + ADD NOTE
+
             </button>
 
         </form>
 
-
         <div class="notes-list">
-
 
             <?php if (empty($notes)): ?>
 
                 <p>No notes yet.</p>
 
             <?php else: ?>
-
 
                 <?php foreach ($notes as $note): ?>
 
@@ -354,11 +410,13 @@ include "includes/header.php";
 
 
                         <p>
+
                             <?= nl2br(
                                 htmlspecialchars(
                                     $note['note_content']
                                 )
                             ) ?>
+
                         </p>
 
 
@@ -371,10 +429,8 @@ include "includes/header.php";
                         </small>
 
 
+
                         <div class="note-buttons">
-
-
-                            <!-- EDIT -->
 
                             <form
                                 method="POST"
@@ -413,11 +469,12 @@ include "includes/header.php";
 
 
                                 <button type="submit">
+
                                     Edit
+
                                 </button>
 
                             </form>
-
 
                             <form
                                 method="POST"
@@ -452,7 +509,9 @@ include "includes/header.php";
                                     type="submit"
                                     class="remove-note"
                                 >
+
                                     ×
+
                                 </button>
 
                             </form>
@@ -464,12 +523,13 @@ include "includes/header.php";
 
                 <?php endforeach; ?>
 
-
             <?php endif; ?>
-
 
         </div>
 
     </section>
+
+</main>
+
 
 <?php include "includes/footer.php"; ?>
