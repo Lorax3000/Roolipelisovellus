@@ -38,6 +38,11 @@
             </p>
 
             <p>
+                <strong>Max HP:</strong>
+                <?= htmlspecialchars($character['character_max_hp']) ?>
+            </p>
+
+            <p>
                 <strong>Mana:</strong>
                 <?= htmlspecialchars($character['character_mana']) ?>
             </p>

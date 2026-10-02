@@ -72,8 +72,30 @@
     </div>
 
     <div>
+        <label>Health:</label>
+
+        <input 
+            type="number"
+            name="character_health"
+            value="<?= htmlspecialchars($character['character_health']) ?>"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Max HP:</label>
+
+        <input 
+            type="number"
+            name="character_max_hp"
+            value="<?= htmlspecialchars($character['character_max_hp']) ?>"
+            required
+        >
+    </div>
+
+    <div>
         <label>Notes:</label>
-        <textarea name="character_notes" required><?= htmlspecialchars($character['character_notes']) ?></textarea>
+        <textarea name="character_notes"><?= htmlspecialchars($character['character_notes']) ?></textarea>
     </div>
 
     <div>

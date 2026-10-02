@@ -1,17 +1,122 @@
 <?php
+
 session_start();
 require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/characters/characterController.php';
-require_once __DIR__ . '/campaigns/campaignController.php';
 require_once __DIR__ . '/users/userController.php';
+require_once __DIR__ . '/campaigns/kampanjaController.php';
+require_once __DIR__ . '/game/gameController.php';
+
 
 $page = $_GET['page'] ?? 'dashboard';
+
+if(
+    !isset($_SESSION['user_id']) &&
+    $page !== 'dashboard' &&
+    $page !== 'login' &&
+    $page !== 'signup' &&
+    $page !== 'loginUser' &&
+    $page !== 'singupUser'
+) {
+    header("Location: index.php?page=dashboard");
+}
 
 $pdo = connect();
 
 $characterController = new CharacterController($pdo);
-$campaignController = new CampaignController($pdo);
 $userController = new UserController($pdo);
+$KampanjaController = new KampanjaController($pdo);
+
+if ($page === 'kampanja') {
+
+    if ($page === 'kampanja') {
+
+    $action = $_POST['action'] ?? $_GET['action'] ?? '';
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        switch ($action) {
+
+            case 'create':
+                $KampanjaController->createKampanja();
+                break;
+
+            case 'update':
+                $KampanjaController->updateKampanja();
+                break;
+
+            case 'delete':
+                $KampanjaController->deleteKampanja();
+                break;
+
+            case 'addPlayer':
+                $KampanjaController->addPlayer();
+                break;
+
+            case 'updatePlayerStatus':
+                $KampanjaController->updatePlayerStatus();
+                break;
+
+            case 'deletePlayer':
+                $KampanjaController->deletePlayer();
+                break;
+
+            case 'addNote':
+                $KampanjaController->addNote();
+                break;
+
+            case 'updateNote':
+                $KampanjaController->updateNote();
+                break;
+
+            case 'deleteNote':
+                $KampanjaController->deleteNote();
+                break;
+
+            default:
+                $KampanjaController->campaigns();
+                break;
+        }
+
+    } else {
+
+        switch ($action) {
+
+            case 'create':
+                $KampanjaController->createForm();
+                break;
+
+            case 'edit':
+
+                $id = $_GET['id'] ?? null;
+
+                if (!$id) {
+                    die('Kampanjan ID puuttuu.');
+                }
+
+                $KampanjaController->editForm($id);
+                break;
+
+            case 'show':
+
+                $id = $_GET['id'] ?? null;
+
+                if (!$id) {
+                    die('Kampanjan ID puuttuu.');
+                }
+
+                $KampanjaController->showKampanja($id);
+                break;
+
+            default:
+                $KampanjaController->campaigns();
+                break;
+        }
+    }
+
+    exit;
+}
+}
 
 switch ($page) {
 
@@ -65,12 +170,19 @@ switch ($page) {
         $userController->logout();
         break;
 
-    case 'showCampaignPage':
-        $campaignController->showCampaignPage();
+    case 'campaigns':
+        $KampanjaController->campaigns();
         break;
 
-    case 'createCampaign':
-        $campaignController->showCreateCampaign();
+    case 'game':
+        $campaign_id = $_GET['campaign_id'] ?? null;
+    
+        if (!$campaign_id) {
+            die('Kampanjan ID puuttuu.');
+        }
+    
+        $gameController = new GameController($pdo);
+        $gameController->game($campaign_id);
         break;
 
     default:

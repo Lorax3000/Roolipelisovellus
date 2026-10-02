@@ -45,7 +45,7 @@ class CharacterModel{
         $stmt = $this->pdo->prepare($sql);
         
         $user = $_SESSION['user_id'];
-        $campaign = 1;
+        $campaign = 4;
         $level = 1;
 
         $health = rand(10, 100);
@@ -108,16 +108,20 @@ class CharacterModel{
         $userId,
         $name,
         $class,
+        $health,
         $race,
         $notes,
-        $status
+        $status,
+        $character_max_hp
     ) {
         $sql = "UPDATE characters SET
             character_name = :name,
             character_class = :class,
             character_race = :race,
+            character_health = :health,
             character_notes = :notes,
-            character_status = :status
+            character_status = :status,
+            character_max_hp = :character_max_hp
             WHERE character_id = :id
             AND character_user = :user";
     
@@ -129,8 +133,10 @@ class CharacterModel{
             ':name' => $name,
             ':class' => $class,
             ':race' => $race,
+            'health' => $health,
             ':notes' => $notes,
-            ':status' => $status
+            ':status' => $status,
+            ':character_max_hp' => $character_max_hp
         ]);
     }
 

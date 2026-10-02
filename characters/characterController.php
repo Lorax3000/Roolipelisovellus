@@ -55,14 +55,16 @@ class CharacterController
         $name = $_POST['character_name'];
         $class = $_POST['character_class'];
         $race = $_POST['character_race'];
+        $health = $_POST['character_health'];
         $notes = $_POST['character_notes'];
         $status = $_POST['character_status'];
+        $character_max_hp = $_POST['character_max_hp'];
 
         $userId = $_SESSION['user_id'];
 
         $model = new CharacterModel($this->pdo);
 
-        $model->editCharacter($id, $userId, $name, $class, $race, $notes, $status);
+        $model->editCharacter($id, $userId, $name, $class, $race, $health, $notes, $status, $character_max_hp);
 
         header("Location: index.php?page=dashboard");
         exit();

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website</title>
+    <title>Rol3play</title>
 </head>
 <body>
 
 <header>
 
-    <h1>Website</h1>
+    <h1>Rol3play</h1>
 
 </header>
 
