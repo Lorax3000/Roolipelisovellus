@@ -16,6 +16,7 @@ class GameModel
                     c.character_name,
                     c.character_health,
                     c.character_max_hp,
+                    c.character_level,
                     c.character_user,
                     u.username
                 FROM characters c
@@ -33,33 +34,8 @@ class GameModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function attackEnemy($damage)
-    {
-        $enemy_hp = 50;
-
-        $enemy_hp -= $damage;
-
-        if ($enemy_hp < 0) {
-            $enemy_hp = 0;
-        }
-
-        return $enemy_hp;
-    }
-
     public function damageCharacter($character_id, $damage, $campaign_id)
     {
-        $sql = "UPDATE characters
-                SET character_health = GREATEST(character_health - :damage, 0)
-                WHERE character_id = :character_id";
-
-        $stmt = $this->pdo->prepare($sql);
-
-        $stmt->execute([
-            ':damage' => $damage,
-            ':character_id' => $character_id
-        ]);
-
-
         $sql = "SELECT character_health
                 FROM characters
                 WHERE character_id = :character_id";
@@ -72,8 +48,30 @@ class GameModel
 
         $character = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        if (!$character) {
+            return;
+        }
 
-        if ($character && $character['character_health'] <= 0) {
+        $current_health = (int) $character['character_health'];
+
+        $new_health = $current_health - $damage;
+
+        if ($new_health < 0) {
+            $new_health = 0;
+        }
+
+        $sql = "UPDATE characters
+                SET character_health = :health
+                WHERE character_id = :character_id";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':health' => $new_health,
+            ':character_id' => $character_id
+        ]);
+
+        if ($new_health <= 0) {
 
             $sql = "UPDATE members
                     SET member_status = 'dead'
@@ -87,6 +85,39 @@ class GameModel
                 ':campaign_id' => $campaign_id
             ]);
         }
+    }
+    
+    public function levelUpCharacter($character_id, $currentLevel)
+    {
+        $newLevel = $currentLevel + 1;
+
+        if ($newLevel <= 5) {
+
+            $sql = "UPDATE characters
+                    SET
+                        character_level = :level,
+                        character_strength = character_strength + 5,
+                        character_endurance = character_endurance + 5,
+                        character_agility = character_agility + 5,
+                        character_intelligence = character_intelligence + 5,
+                        character_charisma = character_charisma + 5,
+                        character_max_hp = character_max_hp + 5,
+                        character_health = character_max_hp + 5
+                    WHERE character_id = :character_id";
+
+        } else {
+
+            $sql = "UPDATE characters
+                    SET character_level = :level
+                    WHERE character_id = :character_id";
+        }
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':level' => $newLevel,
+            ':character_id' => $character_id
+        ]);
     }
 }
 ?>

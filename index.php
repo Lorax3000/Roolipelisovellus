@@ -254,17 +254,47 @@ switch ($page) {
         break;
 
     case 'attack':
-        
+
         $campaign_id = $_POST['campaign_id'] ?? null;
-    
+
+        if (!$campaign_id)
+        {
+            die('Kampanjan ID puuttuu.');
+        }
+
+        $gameController = new GameController($pdo);
+
+        $gameController->attack($campaign_id);
+
+        break;
+
+    case 'defend':
+
+        $campaign_id = $_POST['campaign_id'] ?? null;
+
+        if (!$campaign_id)
+        {
+            die('Kampanjan ID puuttuu.');
+        } 
+
+        $gameController = new GameController($pdo);
+
+        $gameController->defend($campaign_id);
+
+        break;
+
+    case 'newBattle':
+
+        $campaign_id = $_POST['campaign_id'] ?? null;
+
         if (!$campaign_id) {
             die('Kampanjan ID puuttuu.');
         }
-    
+
         $gameController = new GameController($pdo);
-    
-        $gameController->attack($campaign_id);
-    
+        
+        $gameController->newBattle($campaign_id);
+
         break;
 
     default:

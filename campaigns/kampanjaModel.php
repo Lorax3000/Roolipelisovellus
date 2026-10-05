@@ -9,7 +9,6 @@ class KampanjaModel
         $this->pdo = $pdo;
     }
 
-
     public function createKampanja(
         $campaign_desc,
         $campaign_name,
@@ -32,7 +31,6 @@ class KampanjaModel
         ]);
     }
 
-
     public function getKampanja($id)
     {
         $sql = "SELECT *
@@ -48,7 +46,6 @@ class KampanjaModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-
     public function getKampanjas()
     {
         $sql = "SELECT *
@@ -61,7 +58,6 @@ class KampanjaModel
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     public function editKampanja(
         $campaign_id,
@@ -84,7 +80,6 @@ class KampanjaModel
             ':campaign_id' => $campaign_id
         ]);
     }
-
 
     public function deleteKampanja($id)
     {
@@ -133,7 +128,6 @@ class KampanjaModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
     public function getPlayers($campaign_id)
     {
         $sql = "SELECT
@@ -156,7 +150,6 @@ class KampanjaModel
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     public function addPlayer($campaign_id, $user_id)
     {
@@ -282,7 +275,6 @@ class KampanjaModel
         ]);
     }
 
-
     public function deletePlayer($member_id)
     {
         $sql = "DELETE FROM members
@@ -294,7 +286,6 @@ class KampanjaModel
             ':member_id' => $member_id
         ]);
     }
-
 
     public function getNotes($campaign_id)
     {
@@ -311,7 +302,6 @@ class KampanjaModel
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     public function addNote($campaign_id, $content)
     {
@@ -334,7 +324,6 @@ class KampanjaModel
         ]);
     }
 
-
     public function updateNote($note_id, $content)
     {
         $sql = "UPDATE campaign_notes
@@ -348,7 +337,6 @@ class KampanjaModel
             ':note_id' => $note_id
         ]);
     }
-
 
     public function deleteNote($note_id)
     {

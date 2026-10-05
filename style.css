@@ -18,7 +18,6 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-
     font-family: "Font";
     background-color: var(--backgroundcol);
     color: white;
@@ -29,7 +28,6 @@ footer {
     background-color: var(--accentcolor);
     color: white;
     height: 70px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,20 +40,15 @@ footer {
 .dashboard-no-user {
     width: 800px;
     min-height: 450px;
-
     margin: 80px auto;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     text-align: center;
-
     background-color: var(--accentcolor);
     border: 2px solid var(--highlightedtext);
     border-radius: 15px;
-
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -74,7 +67,6 @@ footer {
     display: flex;
     justify-content: center;
     gap: 30px;
-
     margin-top: 60px;
 }
 
@@ -82,19 +74,13 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-
     width: 220px;
     height: 75px;
-
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     border-radius: 10px;
-
     text-decoration: none;
-
     font-size: 24px;
-
     transition: transform 0.2s ease;
 }
 
@@ -105,12 +91,9 @@ footer {
 .user-login-button button {
     font-family: "Font";
     font-size: 22px;
-
     background: none;
     color: inherit;
-
     border: none;
-
     cursor: pointer;
 }
 
@@ -142,28 +125,18 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-
     min-width: 200px;
     height: 60px;
-
     font-family: "Font";
     font-size: 20px;
-
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     padding: 12px 25px;
-
     border: none;
     border-radius: 10px;
-
     text-decoration: none;
-
     cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .create-character-button:hover {
@@ -184,29 +157,21 @@ footer {
 
 .character {
     background-color: var(--accentcolor);
-
     border: 2px solid var(--highlightedtext);
     border-radius: 12px;
-
     padding: 25px;
     width: 280px;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .character:hover {
     transform: translateY(-5px);
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .character h3 {
     color: var(--highlightedtext);
     font-size: 28px;
-
     margin-bottom: 20px;
 }
 
@@ -217,12 +182,9 @@ footer {
 
 .view-character {
     display: inline-block;
-
     margin-top: 15px;
-
     color: var(--highlightedtext);
     text-decoration: none;
-
     font-size: 18px;
 }
 
@@ -230,41 +192,15 @@ footer {
     text-decoration: underline;
 }
 
-.create-character-button {
-    font-family: "Font";
-    font-size: 20px;
-
-    background-color: var(--highlightedtext);
-    color: var(--backgroundcol);
-
-    padding: 15px 25px;
-
-    border: none;
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    transition: transform 0.2s ease;
-}
-
-.create-character-button:hover {
-    transform: scale(1.05);
-}
-
 .logout-button {
     margin-top: 50px;
-
     font-family: "Font";
     font-size: 18px;
-
     background-color: transparent;
     color: white;
-
     border: 2px solid var(--highlightedtext);
     border-radius: 8px;
-
     padding: 10px 25px;
-
     cursor: pointer;
 }
 
@@ -272,13 +208,10 @@ footer {
     width: 450px;
     margin: 80px auto;
     padding: 40px;
-
     text-align: center;
-
     background-color: var(--accentcolor);
     border: 2px solid var(--highlightedtext);
     border-radius: 15px;
-
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -309,15 +242,11 @@ footer {
 .meow input {
     font-family: "Font";
     font-size: 18px;
-
     padding: 12px;
-
     background-color: var(--backgroundcol);
     color: white;
-
     border: 2px solid var(--highlightedtext);
     border-radius: 8px;
-
     outline: none;
 }
 
@@ -328,17 +257,12 @@ footer {
 .meow form button {
     font-family: "Font";
     font-size: 20px;
-
     padding: 12px;
-
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     border: none;
     border-radius: 8px;
-
     cursor: pointer;
-
     transition: transform 0.2s ease;
 }
 
@@ -365,11 +289,9 @@ footer {
     width: 550px;
     margin: 60px auto;
     padding: 40px;
-
     background-color: var(--accentcolor);
     border: 2px solid var(--highlightedtext);
     border-radius: 15px;
-
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -393,15 +315,11 @@ footer {
 .character_edit_form textarea {
     font-family: "Font";
     font-size: 17px;
-
     padding: 12px;
-
     background-color: var(--backgroundcol);
     color: white;
-
     border: 2px solid var(--highlightedtext);
     border-radius: 8px;
-
     outline: none;
 }
 
@@ -422,17 +340,12 @@ footer {
 .character_edit_form button {
     font-family: "Font";
     font-size: 18px;
-
     padding: 12px 20px;
-
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     border: none;
     border-radius: 8px;
-
     cursor: pointer;
-
     transition: transform 0.2s ease;
 }
 
@@ -471,21 +384,16 @@ footer {
 .character_details {
     width: 750px;
     margin: 60px auto;
-
     background-color: var(--accentcolor);
-
     border: 2px solid var(--highlightedtext);
     border-radius: 15px;
-
     overflow: hidden;
-
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .character_details_header {
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     padding: 20px;
     text-align: center;
 }
@@ -500,11 +408,8 @@ footer {
 
 .character_details_body p {
     display: flex;
-
     padding: 12px 0;
-
     border-bottom: 1px solid rgba(255, 200, 110, 0.25);
-
     font-size: 18px;
 }
 
@@ -521,24 +426,18 @@ footer {
     display: flex;
     justify-content: center;
     gap: 20px;
-
     padding: 25px;
-
     border-top: 1px solid rgba(255, 200, 110, 0.25);
 }
 
 .character_detail_buttons button {
     font-family: "Font";
     font-size: 17px;
-
     padding: 12px 20px;
-
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     border: none;
     border-radius: 8px;
-
     cursor: pointer;
 }
 
@@ -577,13 +476,11 @@ main {
     display: flex;
     align-items: center;
     gap: 25px;
-
     margin-bottom: 40px;
 }
 
 .campaign-header h2 {
     margin-right: auto;
-
     font-size: 45px;
     color: var(--highlightedtext);
 }
@@ -600,14 +497,10 @@ main {
 
 .campaign-header .create-button {
     padding: 13px 20px;
-
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     border-radius: 8px;
-
     text-decoration: none;
-
     transition: transform 0.2s ease;
 }
 
@@ -618,21 +511,16 @@ main {
 .kampanja-form {
     width: 600px;
     max-width: 100%;
-
     margin: 0 auto 50px;
     padding: 35px;
-
     background-color: var(--accentcolor);
-
     border: 2px solid var(--highlightedtext);
     border-radius: 15px;
-
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .kampanja-form h2 {
     margin-bottom: 30px;
-
     text-align: center;
     font-size: 30px;
     color: var(--highlightedtext);
@@ -642,7 +530,6 @@ main {
     display: flex;
     flex-direction: column;
     gap: 8px;
-
     margin-bottom: 20px;
 }
 
@@ -655,15 +542,11 @@ main {
 .form-group select {
     font-family: "Font";
     font-size: 17px;
-
     padding: 12px;
-
     background-color: var(--backgroundcol);
     color: white;
-
     border: 2px solid var(--highlightedtext);
     border-radius: 8px;
-
     outline: none;
 }
 
@@ -682,7 +565,6 @@ main {
     display: flex;
     justify-content: center;
     gap: 15px;
-
     margin-top: 30px;
 }
 
@@ -690,27 +572,21 @@ main {
 .form-buttons a {
     font-family: "Font";
     font-size: 17px;
-
     padding: 12px 20px;
-
     border-radius: 8px;
-
     cursor: pointer;
-
     text-decoration: none;
 }
 
 .form-buttons button {
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     border: none;
 }
 
 .form-buttons a {
     background-color: transparent;
     color: white;
-
     border: 2px solid var(--highlightedtext);
 }
 
@@ -729,24 +605,16 @@ main {
     display: flex;
     justify-content: space-between;
     gap: 30px;
-
     padding: 25px;
-
     background-color: var(--accentcolor);
-
     border: 2px solid var(--highlightedtext);
     border-radius: 12px;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .kampanja:hover {
     transform: translateY(-3px);
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .kampanja-content {
@@ -755,14 +623,12 @@ main {
 
 .kampanja-content h2 {
     margin-bottom: 15px;
-
     font-size: 28px;
     color: var(--highlightedtext);
 }
 
 .kampanja-content p {
     margin-bottom: 10px;
-
     font-size: 17px;
     line-height: 1.5;
 }
@@ -781,15 +647,10 @@ main {
 .kampanja-buttons button {
     font-family: "Font";
     font-size: 16px;
-
     padding: 10px 15px;
-
     border-radius: 8px;
-
     cursor: pointer;
-
     text-decoration: none;
-
     transition: transform 0.2s ease;
 }
 
@@ -801,7 +662,6 @@ main {
 .kampanja-buttons button {
     background-color: transparent;
     color: white;
-
     border: 2px solid var(--highlightedtext);
 }
 
@@ -812,9 +672,7 @@ main {
 
 .kampanja-list > p {
     text-align: center;
-
     padding: 50px;
-
     color: white;
     font-size: 20px;
 }
@@ -824,7 +682,6 @@ main {
     max-width: 90%;
     margin: 0 auto;
     padding: 50px 0;
-
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -833,9 +690,7 @@ main {
 .section-title {
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     padding: 18px 25px;
-
     border-radius: 10px 10px 0 0;
 }
 
@@ -843,14 +698,14 @@ main {
     font-size: 30px;
 }
 
-.campaigns-section {
+.campaigns-section,
+.players-section,
+.characters-section,
+.notes-section {
     background-color: var(--accentcolor);
-
     border: 2px solid var(--highlightedtext);
     border-radius: 12px;
-
     overflow: hidden;
-
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -861,14 +716,12 @@ main {
 .campaigns-content h3 {
     color: var(--highlightedtext);
     font-size: 22px;
-
     margin-bottom: 15px;
 }
 
 .campaigns-content p {
     font-size: 18px;
     line-height: 1.6;
-
     margin-bottom: 20px;
 }
 
@@ -876,25 +729,11 @@ main {
     color: var(--highlightedtext);
 }
 
-.players-section {
-    background-color: var(--accentcolor);
-
-    border: 2px solid var(--highlightedtext);
-    border-radius: 12px;
-
-    overflow: hidden;
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
 .players-header {
     display: grid;
     grid-template-columns: 1fr 150px;
-
     padding: 15px 25px;
-
     border-bottom: 2px solid var(--highlightedtext);
-
     color: var(--highlightedtext);
 }
 
@@ -911,9 +750,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 18px 25px;
-
     border-bottom: 1px solid rgba(255, 200, 110, 0.25);
 }
 
@@ -938,15 +775,10 @@ main {
 .player-status {
     font-family: "Font";
     font-size: 15px;
-
     min-width: 90px;
-
     padding: 8px 12px;
-
     border-radius: 7px;
-
     cursor: pointer;
-
     transition: transform 0.2s ease;
 }
 
@@ -957,14 +789,12 @@ main {
 .player-status.alive {
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     border: 2px solid var(--highlightedtext);
 }
 
 .player-status.dead {
     background-color: transparent;
     color: white;
-
     border: 2px solid var(--highlightedtext);
 }
 
@@ -972,18 +802,13 @@ main {
 .remove-note {
     font-family: "Font";
     font-size: 20px;
-
     width: 38px;
     height: 38px;
-
     background-color: transparent;
     color: white;
-
     border: 2px solid var(--highlightedtext);
     border-radius: 7px;
-
     cursor: pointer;
-
     transition: transform 0.2s ease;
 }
 
@@ -992,48 +817,45 @@ main {
     transform: scale(1.08);
 }
 
-.add-player-wrapper {
+.add-player-wrapper,
+.add-character-wrapper {
     padding: 25px;
-
     border-top: 1px solid rgba(255, 200, 110, 0.25);
 }
 
-.add-player-wrapper form {
+.add-player-wrapper form,
+.add-character-wrapper form {
     display: flex;
     gap: 15px;
 }
 
-.add-player-wrapper select {
+.add-player-wrapper select,
+.add-character-wrapper select {
     flex: 1;
-
     font-family: "Font";
     font-size: 16px;
-
     padding: 12px;
-
     background-color: var(--backgroundcol);
     color: white;
-
     border: 2px solid var(--highlightedtext);
     border-radius: 8px;
-
     outline: none;
+}
+
+.add-player-wrapper select:focus,
+.add-character-wrapper select:focus {
+    box-shadow: 0 0 8px var(--highlightedtext);
 }
 
 .add-player-btn {
     font-family: "Font";
     font-size: 16px;
-
     padding: 12px 20px;
-
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     border: none;
     border-radius: 8px;
-
     cursor: pointer;
-
     transition: transform 0.2s ease;
 }
 
@@ -1041,74 +863,79 @@ main {
     transform: scale(1.03);
 }
 
+.characters-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.character-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 25px;
+    border-bottom: 1px solid rgba(255, 200, 110, 0.25);
+}
+
+.character-row:last-child {
+    border-bottom: none;
+}
+
+.character-name {
+    font-size: 19px;
+    color: var(--highlightedtext);
+}
+
+.character-owner {
+    font-size: 16px;
+    color: white;
+}
+
 .start-section {
     display: flex;
     justify-content: center;
-
     padding: 10px 0;
 }
 
 .start-game-btn {
+    display: inline-block;
     font-family: "Font";
     font-size: 25px;
-
     padding: 18px 50px;
-
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     border: none;
     border-radius: 10px;
-
     cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .start-game-btn:hover {
     transform: scale(1.05);
-
     box-shadow: 0 0 15px rgba(255, 200, 110, 0.4);
 }
 
 .notes-section {
     background-color: var(--accentcolor);
-
-    border: 2px solid var(--highlightedtext);
-    border-radius: 12px;
-
-    overflow: hidden;
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .note-form {
     display: flex;
     gap: 15px;
-
     padding: 25px;
-
     border-bottom: 1px solid rgba(255, 200, 110, 0.25);
 }
 
 .note-form textarea {
     flex: 1;
-
     min-height: 80px;
-
     font-family: "Font";
     font-size: 16px;
-
     padding: 12px;
-
     background-color: var(--backgroundcol);
     color: white;
-
     border: 2px solid var(--highlightedtext);
     border-radius: 8px;
-
     resize: vertical;
     outline: none;
 }
@@ -1119,20 +946,14 @@ main {
 
 .note-form button {
     align-self: flex-start;
-
     font-family: "Font";
     font-size: 16px;
-
     padding: 12px 20px;
-
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     border: none;
     border-radius: 8px;
-
     cursor: pointer;
-
     transition: transform 0.2s ease;
 }
 
@@ -1144,41 +965,32 @@ main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-
     padding: 25px;
 }
 
 .muistiinpano {
     padding: 25px;
-
     background-color: var(--backgroundcol);
-
     border: 2px solid var(--highlightedtext);
     border-radius: 10px;
 }
 
 .muistiinpano h3 {
     color: var(--highlightedtext);
-
     font-size: 20px;
-
     margin-bottom: 15px;
 }
 
 .muistiinpano p {
     font-size: 16px;
     line-height: 1.5;
-
     margin-bottom: 15px;
-
     white-space: normal;
 }
 
 .muistiinpano small {
     display: block;
-
     color: rgba(255, 255, 255, 0.6);
-
     margin-bottom: 15px;
 }
 
@@ -1196,35 +1008,25 @@ main {
 
 .note-buttons textarea {
     flex: 1;
-
     min-height: 60px;
-
     font-family: "Font";
     font-size: 15px;
-
     padding: 10px;
-
     background-color: var(--accentcolor);
     color: white;
-
     border: 1px solid var(--highlightedtext);
     border-radius: 7px;
-
     resize: vertical;
 }
 
 .note-buttons button {
     font-family: "Font";
     font-size: 14px;
-
     padding: 9px 15px;
-
     background-color: var(--highlightedtext);
     color: var(--backgroundcol);
-
     border: none;
     border-radius: 7px;
-
     cursor: pointer;
 }
 
@@ -1233,18 +1035,15 @@ main {
 }
 
 .players-list > p,
-.notes-list > p {
+.notes-list > p,
+.characters-list > p {
     padding: 30px;
-
     text-align: center;
-
     font-size: 18px;
 }
 
 .back-button {
     width: 100%;
-    display: flex;
-    justify-content: center;
     margin-bottom: 25px;
 }
 
@@ -1252,14 +1051,307 @@ main {
     display: inline-block;
     font-family: "Font";
     font-size: 18px;
+    padding: 10px 18px;
     color: var(--highlightedtext);
     text-decoration: none;
-    padding: 12px 20px;
     border: 2px solid var(--highlightedtext);
     border-radius: 8px;
-    transition: transform 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .back-button a:hover {
+    background-color: var(--highlightedtext);
+    color: var(--backgroundcol);
+    transform: translateY(-2px);
+}
+
+.game {
+    width: 1400px;
+    max-width: 92%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.game-header h1 {
+    font-size: 50px;
+    color: var(--highlightedtext);
+}
+
+.battle {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 80px 340px;
+    gap: 30px;
+    align-items: start;
+}
+
+.characters-section {
+    min-width: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+}
+
+.characters-section > h2 {
+    color: var(--highlightedtext);
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.character-card {
+    min-width: 0;
+    padding: 25px;
+    background-color: var(--accentcolor);
+    border: 2px solid var(--highlightedtext);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.character-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+}
+
+.character-card h3 {
+    color: var(--highlightedtext);
+    font-size: 26px;
+    margin-bottom: 18px;
+}
+
+.character-card p {
+    font-size: 16px;
+    margin-bottom: 9px;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.actions form {
+    margin: 0;
+}
+
+.actions button {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 8px;
+    font-family: "Font";
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.actions button:hover {
+    transform: translateY(-2px);
+}
+
+.attack-button {
+    background-color: var(--highlightedtext);
+    color: var(--backgroundcol);
+    border: 2px solid var(--highlightedtext);
+}
+
+.attack-button:hover {
+    box-shadow: 0 0 12px rgba(255, 200, 110, 0.4);
+}
+
+.defend-button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid var(--highlightedtext);
+}
+
+.defend-button:hover {
+    background-color: var(--accentcolor);
+}
+
+.acted {
+    color: var(--highlightedtext);
+    margin-top: 20px;
+}
+
+.dead {
+    color: #aaa;
+    margin-top: 20px;
+}
+
+.no-characters {
+    padding: 30px;
+    background-color: var(--accentcolor);
+    border: 2px solid var(--highlightedtext);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 55px;
+    color: var(--highlightedtext);
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.enemy-section {
+    min-width: 0;
+    padding-top: 50px;
+}
+
+.enemy-card {
+    width: 100%;
+    padding: 35px 25px;
+    background-color: var(--accentcolor);
+    border: 2px solid var(--highlightedtext);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.enemy-card h2 {
+    color: var(--highlightedtext);
+    font-size: 30px;
+    margin-bottom: 25px;
+    overflow-wrap: anywhere;
+}
+
+.enemy-hp {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.hp-bar {
+    width: 100%;
+    height: 18px;
+    background-color: var(--backgroundcol);
+    border: 2px solid var(--highlightedtext);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.hp-bar-fill {
+    height: 100%;
+    background-color: var(--highlightedtext);
+    transition: width 0.3s ease;
+}
+
+.defeated {
+    margin-top: 20px;
+    padding: 25px;
+    background-color: var(--accentcolor);
+    border: 2px solid var(--highlightedtext);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.defeated h3 {
+    color: var(--highlightedtext);
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.new-battle-button {
+    width: 100%;
+    padding: 13px;
+    font-family: "Font";
+    font-size: 17px;
+    background-color: var(--highlightedtext);
+    color: var(--backgroundcol);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.new-battle-button:hover {
     transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(255, 200, 110, 0.4);
+}
+
+.battle-log {
+    margin-top: 35px;
+    padding: 25px;
+    background-color: var(--accentcolor);
+    border: 2px solid var(--highlightedtext);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.battle-log h2 {
+    color: var(--highlightedtext);
+    font-size: 27px;
+    margin-bottom: 20px;
+}
+
+.battle-log p {
+    padding: 10px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 200, 110, 0.2);
+}
+
+.battle-log p:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 1100px) {
+
+    .battle {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .vs {
+        padding: 0;
+        min-height: auto;
+    }
+
+    .enemy-section {
+        padding-top: 0;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .game {
+        max-width: 94%;
+        padding: 30px 0;
+    }
+
+    .game-header h1 {
+        font-size: 38px;
+    }
+
+    .character-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+
+    .enemy-card {
+        padding: 25px 20px;
+    }
+
+    .battle-log {
+        padding: 20px;
+    }
 }

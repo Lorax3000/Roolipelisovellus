@@ -48,7 +48,6 @@ class KampanjaController
         require 'kampanja.php';
     }
 
-
     public function createKampanja()
     {
         $campaign_name = trim(
@@ -85,7 +84,6 @@ class KampanjaController
         exit;
     }
 
-
     public function editForm($id)
     {
         $model = new KampanjaModel($this->pdo);
@@ -103,7 +101,6 @@ class KampanjaController
     
         require 'kampanja.php';
     }
-
 
     public function updateKampanja()
     {
@@ -130,7 +127,6 @@ class KampanjaController
             die('Anna kampanjalle nimi.');
         }
 
-
         $model = new KampanjaModel($this->pdo);
 
         $model->editKampanja(
@@ -140,14 +136,12 @@ class KampanjaController
             $campaign_status
         );
 
-
         header(
             'Location: index.php?page=kampanja'
         );
 
         exit;
     }
-
 
     public function deleteKampanja()
     {
@@ -171,11 +165,6 @@ class KampanjaController
 
         exit;
     }
-
-
-    // =========================
-    // SHOW CAMPAIGN
-    // =========================
 
     public function showKampanja($id)
     {
@@ -227,10 +216,6 @@ class KampanjaController
         exit;
     }
 
-    // =========================
-    // PLAYERS
-    // =========================
-
     public function addPlayer()
     {
         $campaign_id = $_POST['campaign_id'] ?? null;
@@ -251,7 +236,6 @@ class KampanjaController
             $user_id
         );
 
-
         header(
             'Location: index.php?page=kampanja&action=show&id='
             . urlencode($campaign_id)
@@ -259,7 +243,6 @@ class KampanjaController
 
         exit;
     }
-
 
     public function updatePlayerStatus()
     {
@@ -269,11 +252,9 @@ class KampanjaController
 
         $status = $_POST['status'] ?? 'alive';
 
-
         if (!$campaign_id || !$member_id) {
             die('Pelaajan tiedot puuttuvat.');
         }
-
 
         if (!in_array($status, ['alive', 'dead'])) {
             $status = 'alive';
@@ -287,7 +268,6 @@ class KampanjaController
             $member_id,
             $status
         );
-
 
         header(
             'Location: index.php?page=kampanja&action=show&id='
@@ -303,7 +283,6 @@ class KampanjaController
         $campaign_id = $_POST['campaign_id'] ?? null;
 
         $member_id = $_POST['member_id'] ?? null;
-
 
         if (!$campaign_id || !$member_id) {
             die('Pelaajan tiedot puuttuvat.');
@@ -324,11 +303,6 @@ class KampanjaController
         exit;
     }
 
-
-    // =========================
-    // NOTES
-    // =========================
-
     public function addNote()
     {
         $campaign_id = $_POST['campaign_id'] ?? null;
@@ -347,14 +321,12 @@ class KampanjaController
 
         $this->checkOwner($campaign_id);
 
-
         $model = new KampanjaModel($this->pdo);
 
         $model->addNote(
             $campaign_id,
             $content
         );
-
 
         header(
             'Location: index.php?page=kampanja&action=show&id='
@@ -387,14 +359,12 @@ class KampanjaController
 
         $this->checkOwner($campaign_id);
 
-
         $model = new KampanjaModel($this->pdo);
 
         $model->updateNote(
             $note_id,
             $content
         );
-
 
         header(
             'Location: index.php?page=kampanja&action=show&id='
@@ -404,13 +374,11 @@ class KampanjaController
         exit;
     }
 
-
     public function deleteNote()
     {
         $campaign_id = $_POST['campaign_id'] ?? null;
 
         $note_id = $_POST['note_id'] ?? null;
-
 
         if (!$campaign_id || !$note_id) {
             die('Muistiinpanon tiedot puuttuvat.');
@@ -423,7 +391,6 @@ class KampanjaController
         $model->deleteNote(
             $note_id
         );
-
 
         header(
             'Location: index.php?page=kampanja&action=show&id='

@@ -1,16 +1,18 @@
 <?php include "includes/header.php"; ?>
 
 <div class="character_edit_form">
+
 <form method="POST" action="../index.php?page=editCharacter">
 
     <input
         type="hidden"
         name="id"
-        value="<?= $character['character_id'] ?>"
+        value="<?= htmlspecialchars($character['character_id']) ?>"
     >
-
+    
     <div>
         <label>Name:</label>
+
         <input
             type="text"
             name="character_name"
@@ -23,23 +25,28 @@
         <label>Class:</label>
 
         <select name="character_class" required>
-            <option value="1" <?= $character['character_class'] == '1' ? 'selected' : '' ?>>
+            <option value="1"
+                <?= $character['character_class'] == '1' ? 'selected' : '' ?>>
                 1
             </option>
 
-            <option value="2" <?= $character['character_class'] == '2' ? 'selected' : '' ?>>
+            <option value="2"
+                <?= $character['character_class'] == '2' ? 'selected' : '' ?>>
                 2
             </option>
 
-            <option value="3" <?= $character['character_class'] == '3' ? 'selected' : '' ?>>
+            <option value="3"
+                <?= $character['character_class'] == '3' ? 'selected' : '' ?>>
                 3
             </option>
 
-            <option value="4" <?= $character['character_class'] == '4' ? 'selected' : '' ?>>
+            <option value="4"
+                <?= $character['character_class'] == '4' ? 'selected' : '' ?>>
                 4
             </option>
 
-            <option value="5" <?= $character['character_class'] == '5' ? 'selected' : '' ?>>
+            <option value="5"
+                <?= $character['character_class'] == '5' ? 'selected' : '' ?>>
                 5
             </option>
         </select>
@@ -49,23 +56,28 @@
         <label>Race:</label>
 
         <select name="character_race" required>
-            <option value="1" <?= $character['character_race'] === '1' ? 'selected' : '' ?>>
+            <option value="1"
+                <?= $character['character_race'] == '1' ? 'selected' : '' ?>>
                 1
             </option>
 
-            <option value="2" <?= $character['character_race'] === '2' ? 'selected' : '' ?>>
+            <option value="2"
+                <?= $character['character_race'] == '2' ? 'selected' : '' ?>>
                 2
             </option>
 
-            <option value="3" <?= $character['character_race'] === '3' ? 'selected' : '' ?>>
+            <option value="3"
+                <?= $character['character_race'] == '3' ? 'selected' : '' ?>>
                 3
             </option>
 
-            <option value="4" <?= $character['character_race'] === '4' ? 'selected' : '' ?>>
+            <option value="4"
+                <?= $character['character_race'] == '4' ? 'selected' : '' ?>>
                 4
             </option>
 
-            <option value="5" <?= $character['character_race'] === '5' ? 'selected' : '' ?>>
+            <option value="5"
+                <?= $character['character_race'] == '5' ? 'selected' : '' ?>>
                 5
             </option>
         </select>
@@ -74,10 +86,11 @@
     <div>
         <label>Health:</label>
 
-        <input 
+        <input
             type="number"
             name="character_health"
             value="<?= htmlspecialchars($character['character_health']) ?>"
+            min="0"
             required
         >
     </div>
@@ -85,16 +98,18 @@
     <div>
         <label>Max HP:</label>
 
-        <input 
+        <input
             type="number"
             name="character_max_hp"
             value="<?= htmlspecialchars($character['character_max_hp']) ?>"
+            min="1"
             required
         >
     </div>
 
     <div>
         <label>Notes:</label>
+
         <textarea name="character_notes"><?= htmlspecialchars($character['character_notes']) ?></textarea>
     </div>
 

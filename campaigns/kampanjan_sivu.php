@@ -39,19 +39,19 @@ include "includes/header.php";
 
         </div>
 
-
         <div class="campaigns-content">
 
             <h3>Campaign description</h3>
 
             <p>
+
                 <?= nl2br(
                     htmlspecialchars(
                         $kampanja['campaign_desc'] ?? ''
                     )
                 ) ?>
-            </p>
 
+            </p>
 
             <p>
 
@@ -75,7 +75,6 @@ include "includes/header.php";
 
         </div>
 
-
         <div class="players-header">
 
             <h3>Players</h3>
@@ -83,7 +82,6 @@ include "includes/header.php";
             <h3>Status</h3>
 
         </div>
-
 
         <div class="players-list">
 
@@ -104,7 +102,6 @@ include "includes/header.php";
                             ) ?>
 
                         </span>
-
 
                         <div class="player-actions">
 
@@ -144,7 +141,6 @@ include "includes/header.php";
                                         : 'alive'
                                     ?>"
                                 >
-
 
                                 <button
                                     type="submit"
@@ -193,7 +189,6 @@ include "includes/header.php";
                                     ) ?>"
                                 >
 
-
                                 <button
                                     type="submit"
                                     class="remove-player"
@@ -205,7 +200,6 @@ include "includes/header.php";
 
                             </form>
 
-
                         </div>
 
                     </div>
@@ -213,6 +207,59 @@ include "includes/header.php";
                 <?php endforeach; ?>
 
             <?php endif; ?>
+
+        </div>
+
+        <div class="add-player-wrapper">
+
+            <form
+                method="POST"
+                action="index.php?page=kampanja"
+            >
+
+                <input
+                    type="hidden"
+                    name="action"
+                    value="addPlayer"
+                >
+
+                <input
+                    type="hidden"
+                    name="campaign_id"
+                    value="<?= htmlspecialchars($kampanja['campaign_id']) ?>"
+                >
+
+                <select
+                    name="user_id"
+                    required
+                >
+
+                    <option value="">
+                        -- SELECT PLAYER --
+                    </option>
+
+                    <?php foreach ($users as $user): ?>
+
+                        <option
+                            value="<?= htmlspecialchars($user['user_id']) ?>"
+                        >
+                            <?= htmlspecialchars($user['username']) ?>
+                        </option>
+
+                    <?php endforeach; ?>
+
+                </select>
+
+                <button
+                    type="submit"
+                    class="add-player-btn"
+                >
+
+                    + ADD PLAYER
+                
+                </button>
+
+            </form>
 
         </div>
 
@@ -237,7 +284,6 @@ include "includes/header.php";
                     ) ?>"
                 >
 
-
                 <select
                     name="character_id"
                     required
@@ -246,7 +292,6 @@ include "includes/header.php";
                     <option value="">
                         -- SELECT CHARACTER --
                     </option>
-
 
                     <?php foreach ($user_characters as $character): ?>
 
@@ -265,7 +310,6 @@ include "includes/header.php";
                     <?php endforeach; ?>
 
                 </select>
-
 
                 <button
                     type="submit"
@@ -290,7 +334,6 @@ include "includes/header.php";
 
         </div>
 
-
         <div class="characters-list">
 
             <?php if (empty($characters)): ?>
@@ -303,7 +346,6 @@ include "includes/header.php";
 
                     <div class="character-row">
 
-
                         <span class="character-name">
 
                             <?= htmlspecialchars(
@@ -311,7 +353,6 @@ include "includes/header.php";
                             ) ?>
 
                         </span>
-
 
                         <span class="character-owner">
 
@@ -322,7 +363,6 @@ include "includes/header.php";
                             ) ?>
 
                         </span>
-
 
                     </div>
 
@@ -377,13 +417,11 @@ include "includes/header.php";
                 ) ?>"
             >
 
-
             <textarea
                 name="note_content"
                 placeholder="I love this game..."
                 required
             ></textarea>
-
 
             <button type="submit">
 
@@ -405,9 +443,7 @@ include "includes/header.php";
 
                     <div class="muistiinpano">
 
-
                         <h3>Notes</h3>
-
 
                         <p>
 
@@ -419,7 +455,6 @@ include "includes/header.php";
 
                         </p>
 
-
                         <small>
 
                             <?= htmlspecialchars(
@@ -427,8 +462,6 @@ include "includes/header.php";
                             ) ?>
 
                         </small>
-
-
 
                         <div class="note-buttons">
 
@@ -458,7 +491,6 @@ include "includes/header.php";
                                         $note['note_id']
                                     ) ?>"
                                 >
-
 
                                 <textarea
                                     name="note_content"
@@ -504,7 +536,6 @@ include "includes/header.php";
                                     ) ?>"
                                 >
 
-
                                 <button
                                     type="submit"
                                     class="remove-note"
@@ -530,6 +561,5 @@ include "includes/header.php";
     </section>
 
 </main>
-
 
 <?php include "includes/footer.php"; ?>

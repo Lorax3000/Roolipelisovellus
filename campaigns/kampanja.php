@@ -2,7 +2,6 @@
 
 <main>
 
-
     <div class="campaign-header">
 
         <h2>CAMPAIGNS</h2>
@@ -19,7 +18,6 @@
         </a>
 
     </div>
-
 
     <?php if (isset($kampanja)): ?>
 
@@ -62,7 +60,6 @@
                     >
 
             <?php endif; ?>
-
 
                 <div class="form-group">
 
@@ -153,13 +150,11 @@
 
                 </div>
 
-
             </form>
 
         </section>
 
     <?php endif; ?>
-
 
     <section class="kampanja-list">
 
@@ -182,7 +177,6 @@
                             ) ?>
                         </h2>
 
-
                         <p>
                             <?= nl2br(
                                 htmlspecialchars(
@@ -190,7 +184,6 @@
                                 )
                             ) ?>
                         </p>
-
 
                         <p>
 
@@ -206,7 +199,6 @@
 
                     <div class="kampanja-buttons">
 
-
                         <a
                             href="../index.php?page=kampanja&action=show&id=<?= htmlspecialchars($kampanjaItem['campaign_id']) ?>"
                         >
@@ -219,7 +211,6 @@
                         >
                             Edit
                         </a>
-
 
                         <form
                             method="POST"
@@ -245,13 +236,11 @@
 
                         </form>
 
-
                     </div>
 
                 </div>
 
             <?php endforeach; ?>
-
 
         <?php endif; ?>
 

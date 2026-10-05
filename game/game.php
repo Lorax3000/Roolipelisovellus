@@ -4,106 +4,251 @@
 
 <main class="game">
 
-    <h1>⚔️ BATTLE</h1>
+    <div class="game-header">
+        <h1>⚔️ BATTLE</h1>
+    </div>
+
+    <div class="back-button">
+        <a href="index.php?page=kampanja&action=show&id=<?= htmlspecialchars($campaign_id) ?>">
+            ← BACK TO CAMPAIGN
+        </a>
+    </div>
 
     <section class="battle">
 
-        <div class="characters">
+        <div class="characters-section">
 
             <h2>PLAYERS</h2>
 
             <?php if (empty($characters)): ?>
 
-                <p>No characters are in this campaign.</p>
+                <p class="no-characters">
+                    No characters are in this campaign.
+                </p>
 
             <?php else: ?>
 
-                <?php foreach ($characters as $character): ?>
+                <div class="character-grid">
 
-                    <div class="character-card">
+                    <?php foreach ($characters as $character): ?>
 
-                        <h3>
-                            <?= htmlspecialchars(
-                                $character['character_name']
-                            ) ?>
-                        </h3>
+                        <div class="character-card">
 
-                        <p>
-                            ❤️ HP:
+                            <h3>
+                                <?= htmlspecialchars(
+                                    $character['character_name']
+                                ) ?>
+                            </h3>
 
-                            <?= htmlspecialchars(
-                                $character['character_health']
-                            ) ?>
+                            <p>
+                                👤
+                                <?= htmlspecialchars(
+                                    $character['username']
+                                ) ?>
+                            </p>
 
-                            /
+                            <p>
+                                ❤️ HP:
+                                <?= htmlspecialchars(
+                                    $character['character_health']
+                                ) ?>
+                                /
+                                <?= htmlspecialchars(
+                                    $character['character_max_hp']
+                                ) ?>
+                            </p>
 
-                            <?= htmlspecialchars(
-                                $character['character_max_hp']
-                            ) ?>
-                        </p>
+                            <p>
+                                ⭐ XP:
+                                <?= $_SESSION['character_xp'][$character['character_id']] ?? 0 ?>
+                                /
+                                <?= $character['character_level'] <= 5 ? 10 : 25 ?>
+                            </p>
 
-                        <p>
-                            👤
-                            <?= htmlspecialchars(
-                                $character['username']
-                            ) ?>
-                        </p>
+                            <p>
+                                🆙 Level:
+                                <?= htmlspecialchars(
+                                    $character['character_level']
+                                ) ?>
+                            </p>
 
-                    </div>
+                            <?php if ($character['character_health'] > 0): ?>
 
-                <?php endforeach; ?>
+                                <?php if (
+                                    !in_array(
+                                        $character['character_id'],
+                                        $_SESSION['acted'] ?? []
+                                    )
+                                ): ?>
+
+                                    <div class="actions">
+
+                                        <form
+                                            method="POST"
+                                            action="index.php?page=attack"
+                                        >
+
+                                            <input
+                                                type="hidden"
+                                                name="campaign_id"
+                                                value="<?= htmlspecialchars($campaign_id) ?>"
+                                            >
+
+                                            <input
+                                                type="hidden"
+                                                name="character_id"
+                                                value="<?= htmlspecialchars($character['character_id']) ?>"
+                                            >
+
+                                            <button
+                                                type="submit"
+                                                class="attack-button"
+                                            >
+                                                ⚔️ ATTACK
+                                            </button>
+
+                                        </form>
+
+                                        <form
+                                            method="POST"
+                                            action="index.php?page=defend"
+                                        >
+
+                                            <input
+                                                type="hidden"
+                                                name="campaign_id"
+                                                value="<?= htmlspecialchars($campaign_id) ?>"
+                                            >
+
+                                            <input
+                                                type="hidden"
+                                                name="character_id"
+                                                value="<?= htmlspecialchars($character['character_id']) ?>"
+                                            >
+
+                                            <button
+                                                type="submit"
+                                                class="defend-button"
+                                            >
+                                                🛡️ DEFEND
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                <?php else: ?>
+
+                                    <p class="acted">
+                                        ✅ ACTED
+                                    </p>
+
+                                <?php endif; ?>
+
+                            <?php else: ?>
+
+                                <p class="dead">
+                                    💀 DEAD
+                                </p>
+
+                            <?php endif; ?>
+
+                        </div>
+
+                    <?php endforeach; ?>
+
+                </div>
 
             <?php endif; ?>
 
         </div>
 
-
         <div class="vs">
             VS
         </div>
 
+        <div class="enemy-section">
 
-        <div class="enemy-card">
+            <div class="enemy-card">
 
-            <h2>
-                👹
-                <?= htmlspecialchars($enemy['name']) ?>
-            </h2>
+                <h2>
+                    👹
+                    <?= htmlspecialchars($enemy['name']) ?>
+                </h2>
 
-            <p>
-                ❤️ HP:
+                <div class="enemy-hp">
+                    ❤️
+                    <?= htmlspecialchars($enemy['hp']) ?>
+                    /
+                    <?= htmlspecialchars($enemy['max_hp']) ?>
+                </div>
 
-                <?= htmlspecialchars($enemy['hp']) ?>
+                <div class="hp-bar">
+                    <div
+                        class="hp-bar-fill"
+                        style="width: <?= $enemy['max_hp'] > 0
+                            ? ($enemy['hp'] / $enemy['max_hp']) * 100
+                            : 0 ?>%;"
+                    ></div>
+                </div>
 
-                /
+            </div>
 
-                <?= htmlspecialchars($enemy['max_hp']) ?>
-            </p>
+            <?php if ($enemy['hp'] <= 0): ?>
+
+                <div class="defeated">
+
+                    <h3>🏆 DEFEATED</h3>
+
+                    <form
+                        method="POST"
+                        action="index.php?page=newBattle"
+                    >
+
+                        <input
+                            type="hidden"
+                            name="campaign_id"
+                            value="<?= htmlspecialchars($campaign_id) ?>"
+                        >
+
+                        <button
+                            type="submit"
+                            class="new-battle-button"
+                        >
+                            ⚔️ NEW BATTLE
+                        </button>
+
+                    </form>
+
+                </div>
+
+            <?php endif; ?>
 
         </div>
 
     </section>
 
+    <section class="battle-log">
 
-    <form
-    method="POST"
-    action="index.php?page=attack"
-    >
+        <h2>📜 BATTLE LOG</h2>
 
-    <input
-        type="hidden"
-        name="campaign_id"
-        value="<?= htmlspecialchars($campaign_id) ?>"
-    >
+        <?php if (empty($_SESSION['battle_log'])): ?>
 
-    <button
-        type="submit"
-        class="attack-button"
-    >
-        ⚔️ ATTACK
-    </button>
+            <p>No actions yet.</p>
 
-</form>
+        <?php else: ?>
+
+            <?php foreach ($_SESSION['battle_log'] as $message): ?>
+
+                <p>
+                    <?= htmlspecialchars($message) ?>
+                </p>
+
+            <?php endforeach; ?>
+
+        <?php endif; ?>
+
+    </section>
 
 </main>
 
