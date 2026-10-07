@@ -42,51 +42,45 @@ if ($page === 'kampanja') {
                 $KampanjaController->createKampanja();
                 break;
 
-
             case 'update':
                 $KampanjaController->updateKampanja();
                 break;
-
 
             case 'delete':
                 $KampanjaController->deleteKampanja();
                 break;
 
-
             case 'addPlayer':
                 $KampanjaController->addPlayer();
                 break;
-
 
             case 'addCharacter':
                 $KampanjaController->addCharacter();
                 break;
 
-
             case 'updatePlayerStatus':
                 $KampanjaController->updatePlayerStatus();
                 break;
-
 
             case 'deletePlayer':
                 $KampanjaController->deletePlayer();
                 break;
 
-
             case 'addNote':
                 $KampanjaController->addNote();
                 break;
-
 
             case 'updateNote':
                 $KampanjaController->updateNote();
                 break;
 
-
             case 'deleteNote':
                 $KampanjaController->deleteNote();
                 break;
 
+            case 'archive':
+                $KampanjaController->archiveKampanja();
+                break;
 
             default:
                 $KampanjaController->campaigns();
@@ -103,7 +97,6 @@ if ($page === 'kampanja') {
                 $KampanjaController->createForm();
                 break;
 
-
             case 'edit':
 
                 $id = $_GET['id'] ?? null;
@@ -115,7 +108,6 @@ if ($page === 'kampanja') {
                 $KampanjaController->editForm($id);
 
                 break;
-
 
             case 'show':
 
@@ -129,13 +121,13 @@ if ($page === 'kampanja') {
 
                 break;
 
-
             default:
+
                 $KampanjaController->campaigns();
+
                 break;
         }
     }
-
 
     exit;
 }
@@ -185,13 +177,11 @@ switch ($page) {
 
         break;
 
-
     case 'editCharacter':
 
         $characterController->editCharacter();
 
         break;
-
 
     case 'deleteCharacter':
 
@@ -205,13 +195,11 @@ switch ($page) {
 
         break;
 
-
     case 'loginUser':
 
         $userController->login();
 
         break;
-
 
     case 'signup':
 
@@ -219,13 +207,11 @@ switch ($page) {
 
         break;
 
-
     case 'signupUser':
 
         $userController->signup();
 
         break;
-
 
     case 'logout':
 
@@ -240,17 +226,33 @@ switch ($page) {
         break;
 
     case 'game':
-
         $campaign_id = $_GET['campaign_id'] ?? null;
-
+    
         if (!$campaign_id) {
-            die('Kampanjan ID puuttuu.');
+            die('Campaign id missing.');
+        }
+    
+        $kampanjaModel = new KampanjaModel($pdo);
+        $kampanja = $kampanjaModel->getKampanja($campaign_id);
+    
+        if (!$kampanja) {
+            die('Campaign not found.');
+        }
+    
+        if ($kampanja['campaign_status'] === 'archived') {
+            die('This campaign has been archived so the game couldnt be started.');
         }
 
+        if ($kampanja['campaign_status'] === 'paused') {
+            die('This campaign has been paused so the game couldnt be started.');
+        }
+
+        if ($kampanja['campaign_status'] === 'finished') {
+            die('This campaign has finished so the game couldnt be started.');
+        }
+    
         $gameController = new GameController($pdo);
-
         $gameController->game($campaign_id);
-
         break;
 
     case 'attack':
@@ -295,6 +297,18 @@ switch ($page) {
         
         $gameController->newBattle($campaign_id);
 
+        break;
+
+    case 'invitations':
+
+        $KampanjaController->invitations();
+
+        break;
+    
+    case 'acceptInvitation':
+
+        $KampanjaController->acceptInvitation();
+        
         break;
 
     default:

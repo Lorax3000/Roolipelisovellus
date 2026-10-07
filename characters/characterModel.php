@@ -119,35 +119,22 @@ class CharacterModel
 
     public function editCharacter(
         $id,
-        $userId,
-        $name,
-        $class,
-        $race,
         $health,
         $notes,
         $status,
         $character_max_hp
     ) {
         $sql = "UPDATE characters SET
-            character_name = :name,
-            character_class = :class,
-            character_race = :race,
             character_health = :health,
             character_notes = :notes,
             character_status = :status,
             character_max_hp = :character_max_hp
-
-            WHERE character_id = :id
-            AND character_user = :user";
-
+            WHERE character_id = :id";
+    
         $stmt = $this->pdo->prepare($sql);
-
+    
         $stmt->execute([
             ':id' => $id,
-            ':user' => $userId,
-            ':name' => $name,
-            ':class' => $class,
-            ':race' => $race,
             ':health' => $health,
             ':notes' => $notes,
             ':status' => $status,

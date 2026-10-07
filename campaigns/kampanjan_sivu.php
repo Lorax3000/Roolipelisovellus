@@ -20,23 +20,19 @@ include "includes/header.php";
 <main class="game-layout">
 
     <div class="back-button">
-
         <a href="index.php?page=kampanja">
             ← BACK TO CAMPAIGNS
         </a>
-
     </div>
 
     <section class="campaigns-section">
 
         <div class="section-title">
-
             <h2>
                 <?= htmlspecialchars(
                     $kampanja['campaign_name'] ?? ''
                 ) ?>
             </h2>
-
         </div>
 
         <div class="campaigns-content">
@@ -44,23 +40,18 @@ include "includes/header.php";
             <h3>Campaign description</h3>
 
             <p>
-
                 <?= nl2br(
                     htmlspecialchars(
                         $kampanja['campaign_desc'] ?? ''
                     )
                 ) ?>
-
             </p>
 
             <p>
-
                 <strong>Status:</strong>
-
                 <?= htmlspecialchars(
                     $kampanja['campaign_status'] ?? ''
                 ) ?>
-
             </p>
 
         </div>
@@ -70,17 +61,12 @@ include "includes/header.php";
     <section class="players-section">
 
         <div class="section-title">
-
-            <h2>Game Master</h2>
-
+            <h2>Players</h2>
         </div>
 
         <div class="players-header">
-
-            <h3>Players</h3>
-
+            <h3>Username</h3>
             <h3>Status</h3>
-
         </div>
 
         <div class="players-list">
@@ -96,70 +82,74 @@ include "includes/header.php";
                     <div class="player-row">
 
                         <span class="player-name">
-
                             <?= htmlspecialchars(
                                 $player['username']
                             ) ?>
-
                         </span>
 
                         <div class="player-actions">
 
-                            <form
-                                method="POST"
-                                action="index.php?page=kampanja"
-                            >
+                            <?php if ($player['member_status'] === 'pending'): ?>
 
-                                <input
-                                    type="hidden"
-                                    name="action"
-                                    value="updatePlayerStatus"
+                                <span class="player-status pending">
+                                    PENDING
+                                </span>
+
+                            <?php else: ?>
+
+                                <form
+                                    method="POST"
+                                    action="index.php?page=kampanja"
                                 >
 
-                                <input
-                                    type="hidden"
-                                    name="campaign_id"
-                                    value="<?= htmlspecialchars(
-                                        $kampanja['campaign_id']
-                                    ) ?>"
-                                >
+                                    <input
+                                        type="hidden"
+                                        name="action"
+                                        value="updatePlayerStatus"
+                                    >
 
-                                <input
-                                    type="hidden"
-                                    name="member_id"
-                                    value="<?= htmlspecialchars(
-                                        $player['member_id']
-                                    ) ?>"
-                                >
+                                    <input
+                                        type="hidden"
+                                        name="campaign_id"
+                                        value="<?= htmlspecialchars(
+                                            $kampanja['campaign_id']
+                                        ) ?>"
+                                    >
 
-                                <input
-                                    type="hidden"
-                                    name="status"
-                                    value="<?=
-                                        $player['member_status'] === 'alive'
-                                        ? 'dead'
-                                        : 'alive'
-                                    ?>"
-                                >
+                                    <input
+                                        type="hidden"
+                                        name="member_id"
+                                        value="<?= htmlspecialchars(
+                                            $player['member_id']
+                                        ) ?>"
+                                    >
 
-                                <button
-                                    type="submit"
-                                    class="player-status <?= 
-                                        $player['member_status'] === 'alive'
-                                        ? 'alive'
-                                        : 'dead'
-                                    ?>"
-                                >
+                                    <input
+                                        type="hidden"
+                                        name="status"
+                                        value="<?= $player['member_status'] === 'alive'
+                                            ? 'dead'
+                                            : 'alive'
+                                        ?>"
+                                    >
 
-                                    <?= strtoupper(
-                                        htmlspecialchars(
-                                            $player['member_status']
-                                        )
-                                    ) ?>
+                                    <button
+                                        type="submit"
+                                        class="player-status <?= $player['member_status'] === 'alive'
+                                            ? 'alive'
+                                            : 'dead'
+                                        ?>"
+                                    >
+                                        <?= strtoupper(
+                                            htmlspecialchars(
+                                                $player['member_status']
+                                            )
+                                        ) ?>
+                                    </button>
 
-                                </button>
+                                </form>
 
-                            </form>
+                            <?php endif; ?>
 
                             <form
                                 method="POST"
@@ -193,9 +183,7 @@ include "includes/header.php";
                                     type="submit"
                                     class="remove-player"
                                 >
-
                                     ×
-
                                 </button>
 
                             </form>
@@ -226,7 +214,9 @@ include "includes/header.php";
                 <input
                     type="hidden"
                     name="campaign_id"
-                    value="<?= htmlspecialchars($kampanja['campaign_id']) ?>"
+                    value="<?= htmlspecialchars(
+                        $kampanja['campaign_id']
+                    ) ?>"
                 >
 
                 <select
@@ -241,9 +231,13 @@ include "includes/header.php";
                     <?php foreach ($users as $user): ?>
 
                         <option
-                            value="<?= htmlspecialchars($user['user_id']) ?>"
+                            value="<?= htmlspecialchars(
+                                $user['user_id']
+                            ) ?>"
                         >
-                            <?= htmlspecialchars($user['username']) ?>
+                            <?= htmlspecialchars(
+                                $user['username']
+                            ) ?>
                         </option>
 
                     <?php endforeach; ?>
@@ -254,9 +248,7 @@ include "includes/header.php";
                     type="submit"
                     class="add-player-btn"
                 >
-
                     + ADD PLAYER
-                
                 </button>
 
             </form>
@@ -300,11 +292,9 @@ include "includes/header.php";
                                 $character['character_id']
                             ) ?>"
                         >
-
                             <?= htmlspecialchars(
                                 $character['character_name']
                             ) ?>
-
                         </option>
 
                     <?php endforeach; ?>
@@ -315,9 +305,7 @@ include "includes/header.php";
                     type="submit"
                     class="add-player-btn"
                 >
-
                     + ADD CHARACTER
-
                 </button>
 
             </form>
@@ -329,9 +317,7 @@ include "includes/header.php";
     <section class="characters-section">
 
         <div class="section-title">
-
             <h2>Characters</h2>
-
         </div>
 
         <div class="characters-list">
@@ -347,21 +333,16 @@ include "includes/header.php";
                     <div class="character-row">
 
                         <span class="character-name">
-
                             <?= htmlspecialchars(
                                 $character['character_name']
                             ) ?>
-
                         </span>
 
                         <span class="character-owner">
-
                             Player:
-
                             <?= htmlspecialchars(
                                 $character['username']
                             ) ?>
-
                         </span>
 
                     </div>
@@ -373,28 +354,43 @@ include "includes/header.php";
         </div>
 
     </section>
-
+                                
     <section class="start-section">
-
-        <a
-            href="index.php?page=game&campaign_id=<?= htmlspecialchars(
-                $kampanja['campaign_id']
-            ) ?>"
-            class="start-game-btn"
-        >
-
-            START GAME
-
-        </a>
-
+                                
+        <?php if ($kampanja['campaign_status'] !== 'archived'): ?>
+        
+            <?php if (empty($characters)): ?>
+            
+                <p>To start you need to add at least 1 character.</p>
+            
+            <?php else: ?>
+            
+                <a
+                    href="index.php?page=game&campaign_id=<?= htmlspecialchars(
+                        $kampanja['campaign_id']
+                    ) ?>"
+                    class="start-game-btn"
+                >
+                    START GAME
+                </a>
+                    
+            <?php endif; ?>
+                    
+        <?php else: ?>
+        
+            <p class="archived-message">
+                📦 CAMPAIGN ARCHIVED
+            </p>
+        
+        <?php endif; ?>
+        
     </section>
+
 
     <section class="notes-section">
 
         <div class="section-title">
-
             <h2>Notes</h2>
-
         </div>
 
         <form
@@ -424,9 +420,7 @@ include "includes/header.php";
             ></textarea>
 
             <button type="submit">
-
                 + ADD NOTE
-
             </button>
 
         </form>
@@ -446,21 +440,17 @@ include "includes/header.php";
                         <h3>Notes</h3>
 
                         <p>
-
                             <?= nl2br(
                                 htmlspecialchars(
                                     $note['note_content']
                                 )
                             ) ?>
-
                         </p>
 
                         <small>
-
                             <?= htmlspecialchars(
                                 $note['created_at'] ?? ''
                             ) ?>
-
                         </small>
 
                         <div class="note-buttons">
@@ -499,11 +489,8 @@ include "includes/header.php";
                                     $note['note_content']
                                 ) ?></textarea>
 
-
                                 <button type="submit">
-
                                     Edit
-
                                 </button>
 
                             </form>
@@ -540,13 +527,10 @@ include "includes/header.php";
                                     type="submit"
                                     class="remove-note"
                                 >
-
                                     ×
-
                                 </button>
 
                             </form>
-
 
                         </div>
 
@@ -559,6 +543,29 @@ include "includes/header.php";
         </div>
 
     </section>
+
+    <?php if ($kampanja['gm_id'] == $_SESSION['user_id']): ?>
+
+        <form
+            method="POST"
+            action="index.php?page=kampanja&action=archive"
+        >
+
+            <input
+                type="hidden"
+                name="campaign_id"
+                value="<?= htmlspecialchars(
+                    $kampanja['campaign_id']
+                ) ?>"
+            >
+
+            <button type="submit" id='archive-button'>
+                📦 ARCHIVE CAMPAIGN
+            </button>
+
+        </form>
+
+    <?php endif; ?>
 
 </main>
 

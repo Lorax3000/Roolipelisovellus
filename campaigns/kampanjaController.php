@@ -399,6 +399,67 @@ class KampanjaController
 
         exit;
     }
+
+    public function archiveKampanja()
+    {
+        $campaign_id = $_POST['campaign_id'] ?? null;
+    
+        if (!$campaign_id) {
+            die('Kampanjan ID puuttuu.');
+        }
+    
+        $this->checkOwner($campaign_id);
+    
+        $model = new KampanjaModel($this->pdo);
+        $model->archiveKampanja($campaign_id);
+    
+        header(
+            'Location: index.php?page=kampanja&action=show&id='
+            . urlencode($campaign_id)
+        );
+        exit;
+    }
+
+    public function invitations()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: index.php?page=login");
+            exit;
+        }
+
+        $model = new KampanjaModel($this->pdo);
+
+        $user_id = $_SESSION['user_id'];
+
+        $invitations = $model->getPendingInvitations($user_id);
+
+        require 'invitations.php';
+    }
+
+    public function acceptInvitation()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: index.php?page=login");
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $member_id = $_POST['member_id'] ?? null;
+            $user_id = $_SESSION['user_id'];
+
+            if (!$member_id) {
+                die('Kutsun tiedot puuttuvat.');
+            }
+
+            $model = new KampanjaModel($this->pdo);
+
+            $model->acceptInvitation($member_id, $user_id);
+
+            header("Location: index.php?page=invitations");
+            exit;
+        }
+    }
 }
 
 ?>

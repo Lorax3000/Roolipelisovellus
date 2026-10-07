@@ -159,7 +159,6 @@ class KampanjaModel
                 AND member_user = :user_id";
 
         $stmt = $this->pdo->prepare($sql);
-
         $stmt->execute([
             ':campaign_id' => $campaign_id,
             ':user_id' => $user_id
@@ -179,11 +178,10 @@ class KampanjaModel
                 (
                     :campaign_id,
                     :user_id,
-                    'alive'
+                    'pending'
                 )";
 
         $stmt = $this->pdo->prepare($sql);
-
         $stmt->execute([
             ':campaign_id' => $campaign_id,
             ':user_id' => $user_id
@@ -347,6 +345,61 @@ class KampanjaModel
 
         $stmt->execute([
             ':note_id' => $note_id
+        ]);
+    }
+
+    public function getPendingInvitations($user_id)
+    {
+        $sql = "SELECT
+                    m.member_id,
+                    m.member_campaign,
+                    c.campaign_name,
+                    c.campaign_desc,
+                    u.username AS gm_username
+                FROM members m
+                INNER JOIN campaigns c
+                    ON c.campaign_id = m.member_campaign
+                INNER JOIN users u
+                    ON u.user_id = c.gm_id
+                WHERE m.member_user = :user_id
+                AND m.member_status = 'pending'
+                ORDER BY c.created_at DESC";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':user_id' => $user_id
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function acceptInvitation($member_id, $user_id)
+    {
+        $sql = "UPDATE members
+                SET member_status = 'alive'
+                WHERE member_id = :member_id
+                AND member_user = :user_id
+                AND member_status = 'pending'";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':member_id' => $member_id,
+            ':user_id' => $user_id
+        ]);
+    }
+
+    public function archiveKampanja($campaign_id)
+    {
+        $sql = "UPDATE campaigns
+                SET campaign_status = 'archived'
+                WHERE campaign_id = :campaign_id";
+    
+        $stmt = $this->pdo->prepare($sql);
+    
+        $stmt->execute([
+            ':campaign_id' => $campaign_id
         ]);
     }
 }

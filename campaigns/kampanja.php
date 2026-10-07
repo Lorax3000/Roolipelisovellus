@@ -9,6 +9,10 @@
         <a href="index.php?page=dashboard">
             Dashboard
         </a>
+        
+        <a href="index.php?page=invitations">
+            📨 INVITATIONS
+        </a>
 
         <a
             href="index.php?page=kampanja&action=create"
@@ -121,6 +125,13 @@
                             <?= (($kampanja['campaign_status'] ?? '') === 'finished') ? 'selected' : '' ?>
                         >
                             Finished
+                        </option>
+
+                        <option
+                            value="archived"
+                            <?= (($kampanja['campaign_status'] ?? '') === 'archived') ? 'selected' : '' ?>
+                        >
+                            Archived
                         </option>
 
                     </select>
