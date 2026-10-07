@@ -102,7 +102,7 @@ class GameModel
                         character_intelligence = character_intelligence + 5,
                         character_charisma = character_charisma + 5,
                         character_max_hp = character_max_hp + 5,
-                        character_health = character_max_hp + 5
+                        character_health = character_max_hp
                     WHERE character_id = :character_id";
 
         } else {
