@@ -17,7 +17,8 @@ if (
     $page !== 'login' &&
     $page !== 'signup' &&
     $page !== 'loginUser' &&
-    $page !== 'signupUser'
+    $page !== 'signupUser' &&
+    $page !== 'help'
 ) {
     header("Location: index.php?page=dashboard");
     exit;
@@ -309,6 +310,12 @@ switch ($page) {
 
         $KampanjaController->acceptInvitation();
         
+        break;
+
+    case 'help':
+
+        $userController->helpPage();
+
         break;
 
     default:

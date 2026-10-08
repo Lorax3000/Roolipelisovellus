@@ -18,6 +18,7 @@
             name="character_health"
             value="<?= htmlspecialchars($character['character_health']) ?>"
             min="0"
+            max="9999"
             required
         >
     </div>
@@ -30,6 +31,98 @@
             name="character_max_hp"
             value="<?= htmlspecialchars($character['character_max_hp']) ?>"
             min="1"
+            max="9999"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Level:</label>
+
+        <input
+            type="number"
+            name="character_level"
+            value="<?= htmlspecialchars($character['character_level']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Mana:</label>
+
+        <input
+            type="number"
+            name="character_mana"
+            value="<?= htmlspecialchars($character['character_mana']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Strength:</label>
+
+        <input
+            type="number"
+            name="character_strength"
+            value="<?= htmlspecialchars($character['character_strength']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Endurance:</label>
+
+        <input
+            type="number"
+            name="character_endurance"
+            value="<?= htmlspecialchars($character['character_endurance']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Agility:</label>
+
+        <input
+            type="number"
+            name="character_agility"
+            value="<?= htmlspecialchars($character['character_agility']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Intelligence:</label>
+
+        <input
+            type="number"
+            name="character_intelligence"
+            value="<?= htmlspecialchars($character['character_intelligence']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Charisma:</label>
+
+        <input
+            type="number"
+            name="character_charisma"
+            value="<?= htmlspecialchars($character['character_charisma']) ?>"
+            min="1"
+            max="9999"
             required
         >
     </div>

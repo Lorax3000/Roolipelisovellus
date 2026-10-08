@@ -28,7 +28,6 @@ class KampanjaController
         }
     }
 
-
     public function campaigns()
     {
         $model = new KampanjaModel($this->pdo);
@@ -37,7 +36,6 @@ class KampanjaController
 
         require 'kampanja.php';
     }
-
 
     public function createForm()
     {
@@ -62,11 +60,21 @@ class KampanjaController
             $_POST['campaign_status'] ?? 'active'
         );
 
-
         if ($campaign_name === '') {
             die('Anna kampanjalle nimi.');
         }
 
+        $model = new KampanjaModel($this->pdo);
+
+        if ($model->campaignNameExists($campaign_name)) {
+            die("A campaign with that name already exists.");
+        }
+
+        $model->createKampanja(
+            $campaign_desc,
+            $campaign_name,
+            $campaign_status
+        );
 
         $model = new KampanjaModel($this->pdo);
 
@@ -75,7 +83,6 @@ class KampanjaController
             $campaign_name,
             $campaign_status
         );
-
 
         header(
             'Location: index.php?page=kampanja'
@@ -147,7 +154,6 @@ class KampanjaController
     {
         $campaign_id = $_POST['campaign_id'] ?? null;
 
-
         if (!$campaign_id) {
             die('Kampanjan ID puuttuu.');
         }
@@ -157,7 +163,6 @@ class KampanjaController
         $model = new KampanjaModel($this->pdo);
 
         $model->deleteKampanja($campaign_id);
-
 
         header(
             'Location: index.php?page=kampanja'
@@ -221,7 +226,6 @@ class KampanjaController
         $campaign_id = $_POST['campaign_id'] ?? null;
 
         $user_id = $_POST['user_id'] ?? null;
-
 
         if (!$campaign_id || !$user_id) {
             die('Pelaajan tiedot puuttuvat.');
@@ -294,7 +298,6 @@ class KampanjaController
 
         $model->deletePlayer($member_id);
 
-
         header(
             'Location: index.php?page=kampanja&action=show&id='
             . urlencode($campaign_id)
@@ -347,11 +350,9 @@ class KampanjaController
             $_POST['note_content'] ?? ''
         );
 
-
         if (!$campaign_id || !$note_id) {
             die('Muistiinpanon tiedot puuttuvat.');
         }
-
 
         if ($content === '') {
             die('Muistiinpano ei voi olla tyhjä.');

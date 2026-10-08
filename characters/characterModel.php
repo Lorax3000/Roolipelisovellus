@@ -120,12 +120,26 @@ class CharacterModel
     public function editCharacter(
         $id,
         $health,
+        $level,
+        $mana,
+        $strength,
+        $endurance,
+        $agility,
+        $intelligence,
+        $charisma,
         $notes,
         $status,
         $character_max_hp
     ) {
         $sql = "UPDATE characters SET
             character_health = :health,
+            character_level = :level,
+            character_mana = :mana,
+            character_strength = :strength,
+            character_endurance = :endurance,
+            character_agility = :agility,
+            character_intelligence = :intelligence,
+            character_charisma = :charisma,
             character_notes = :notes,
             character_status = :status,
             character_max_hp = :character_max_hp
@@ -136,6 +150,13 @@ class CharacterModel
         $stmt->execute([
             ':id' => $id,
             ':health' => $health,
+            ':level' => $level,
+            ':mana' => $mana,
+            ':strength' => $strength,
+            ':endurance' => $endurance,
+            ':agility' => $agility,
+            ':intelligence' => $intelligence,
+            ':charisma' => $charisma,
             ':notes' => $notes,
             ':status' => $status,
             ':character_max_hp' => $character_max_hp

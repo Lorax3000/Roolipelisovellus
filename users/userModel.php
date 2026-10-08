@@ -43,4 +43,32 @@ class UserModel
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function usernameExists($name)
+    {
+        $sql = "SELECT user_id
+                FROM users
+                WHERE username = :name";
+    
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':name' => $name
+        ]);
+    
+        return $stmt->fetch() !== false;
+    }
+    
+    public function emailExists($email)
+    {
+        $sql = "SELECT user_id
+                FROM users
+                WHERE user_email = :email";
+    
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':email' => $email
+        ]);
+    
+        return $stmt->fetch() !== false;
+    }
 }

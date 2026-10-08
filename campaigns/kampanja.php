@@ -216,34 +216,37 @@
                             Open
                         </a>
 
+                        <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $kampanjaItem['gm_id']): ?>
 
-                        <a
-                            href="../index.php?page=kampanja&action=edit&id=<?= htmlspecialchars($kampanjaItem['campaign_id']) ?>"
-                        >
-                            Edit
-                        </a>
+                            <a
+                                href="../index.php?page=kampanja&action=edit&id=<?= htmlspecialchars($kampanjaItem['campaign_id']) ?>"
+                            >
+                                Edit
+                            </a>
 
-                        <form
-                            method="POST"
-                            action="../index.php?page=kampanja"
-                            onsubmit="return confirm('Haluatko varmasti poistaa tämän kampanjan?');"
-                        >
-
-                            <input
-                                type="hidden"
-                                name="action"
-                                value="delete"
+                            <form
+                                method="POST"
+                                action="../index.php?page=kampanja"
+                                onsubmit="return confirm('Haluatko varmasti poistaa tämän kampanjan?');"
                             >
 
-                            <input
-                                type="hidden"
-                                name="campaign_id"
-                                value="<?= htmlspecialchars($kampanjaItem['campaign_id']) ?>"
-                            >
+                                <input
+                                    type="hidden"
+                                    name="action"
+                                    value="delete"
+                                >
 
-                            <button type="submit">
-                                Delete
-                            </button>
+                                <input
+                                    type="hidden"
+                                    name="campaign_id"
+                                    value="<?= htmlspecialchars($kampanjaItem['campaign_id']) ?>"
+                                >
+
+                                <button type="submit">
+                                    Delete
+                                </button>
+
+                        <?php endif; ?>
 
                         </form>
 

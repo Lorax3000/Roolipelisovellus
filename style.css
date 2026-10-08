@@ -1370,3 +1370,136 @@ main {
     font-size: 24px;
     transition: transform 0.2s ease;
 }
+
+#help-link{
+    margin-right: 10px;
+    text-decoration: none;
+    color: var(--highlightedtext);
+}
+
+#help-link:hover{
+    color:#c39957;
+}
+
+#help-links{
+    text-decoration: none;
+    color: var(--highlightedtext);
+}
+
+#help-links:hover{
+    color:#c39957;
+}
+
+.help-page {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 25px 60px;
+}
+
+.help-page > h1 {
+    color: #FFC86E;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.help-page > .help-intro {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+
+.help-page section {
+    background: #0d0d0d;
+    border: 1px solid #26000C;
+    border-radius: 8px;
+    padding: 25px 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+.help-page section h2 {
+    color: #FFC86E;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #26000C;
+}
+
+.help-page section h3 {
+    color: #e8a94f;
+    margin-top: 25px;
+    margin-bottom: 8px;
+}
+
+.help-page section p {
+    color: #d0d0d0;
+    line-height: 1.7;
+    margin-top: 5px;
+}
+
+.help-page ol {
+    color: #d0d0d0;
+    line-height: 1.8;
+    padding-left: 25px;
+}
+
+.help-page li::marker {
+    color: #FFC86E;
+    font-weight: bold;
+}
+
+#help-links {
+    color: #FFC86E;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+#help-links:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+    .help-page {
+        padding: 0 15px 40px;
+        margin-top: 25px;
+    }
+
+    .help-page section {
+        padding: 20px;
+    }
+
+    .help-page > h1 {
+        font-size: 28px;
+    }
+}
+
+.help-link {
+    color: #FFC86E;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.help-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.help-back-button {
+    display: inline-block;
+    margin-bottom: 25px;
+    padding: 8px 14px;
+    background: #26000C;
+    border: 1px solid #FFC86E;
+    border-radius: 4px;
+    color: #FFC86E;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.help-back-button:hover {
+    background: #FFC86E;
+    color: #070707;
+}

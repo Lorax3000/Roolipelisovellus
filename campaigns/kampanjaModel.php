@@ -59,6 +59,20 @@ class KampanjaModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function campaignNameExists($name)
+    {
+        $sql = "SELECT campaign_id
+                FROM campaigns
+                WHERE campaign_name = :name";
+    
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':name' => $name
+        ]);
+    
+        return $stmt->fetch() !== false;
+    }
+
     public function editKampanja(
         $campaign_id,
         $campaign_desc,
@@ -120,11 +134,14 @@ class KampanjaModel
     {
         $sql = "SELECT user_id, username
                 FROM users
+                WHERE user_id != :user_id
                 ORDER BY username";
-
+    
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
-
+        $stmt->execute([
+            ':user_id' => $_SESSION['user_id']
+        ]);
+    
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -153,21 +170,40 @@ class KampanjaModel
 
     public function addPlayer($campaign_id, $user_id)
     {
+        $sql = "SELECT gm_id
+                FROM campaigns
+                WHERE campaign_id = :campaign_id";
+    
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':campaign_id' => $campaign_id
+        ]);
+    
+        $campaign = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if (!$campaign) {
+            return;
+        }
+    
+        if ($campaign['gm_id'] == $user_id) {
+            return;
+        }
+    
         $sql = "SELECT member_id
                 FROM members
                 WHERE member_campaign = :campaign_id
                 AND member_user = :user_id";
-
+    
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             ':campaign_id' => $campaign_id,
             ':user_id' => $user_id
         ]);
-
+    
         if ($stmt->fetch()) {
             return;
         }
-
+    
         $sql = "INSERT INTO members
                 (
                     member_campaign,
@@ -180,7 +216,7 @@ class KampanjaModel
                     :user_id,
                     'pending'
                 )";
-
+    
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             ':campaign_id' => $campaign_id,

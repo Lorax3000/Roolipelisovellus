@@ -23,6 +23,10 @@
             <option value="Orc">Orc</option>
         </select>
 
+        <br>
+        <p>You WON'T be able to change these later.</p>
+        <p>You may edit other attributes in the character edit page.</p>
+
         <button type="submit">Create</button>
         <button type="reset">Reset</button>
     </form>
