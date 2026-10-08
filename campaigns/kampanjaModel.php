@@ -9,6 +9,20 @@ class KampanjaModel
         $this->pdo = $pdo;
     }
 
+    public function campaignNameExists($name)
+    {
+        $sql = "SELECT campaign_id
+                FROM campaigns
+                WHERE campaign_name = :name";
+    
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':name' => $name
+        ]);
+    
+        return $stmt->fetch() !== false;
+    }
+
     public function createKampanja(
         $campaign_desc,
         $campaign_name,
@@ -57,20 +71,6 @@ class KampanjaModel
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function campaignNameExists($name)
-    {
-        $sql = "SELECT campaign_id
-                FROM campaigns
-                WHERE campaign_name = :name";
-    
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([
-            ':name' => $name
-        ]);
-    
-        return $stmt->fetch() !== false;
     }
 
     public function editKampanja(

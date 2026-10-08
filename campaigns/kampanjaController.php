@@ -78,12 +78,6 @@ class KampanjaController
 
         $model = new KampanjaModel($this->pdo);
 
-        $model->createKampanja(
-            $campaign_desc,
-            $campaign_name,
-            $campaign_status
-        );
-
         header(
             'Location: index.php?page=kampanja'
         );
