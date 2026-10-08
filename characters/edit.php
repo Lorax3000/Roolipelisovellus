@@ -1,79 +1,136 @@
 <?php include "includes/header.php"; ?>
 
 <div class="character_edit_form">
+
 <form method="POST" action="../index.php?page=editCharacter">
 
     <input
         type="hidden"
         name="id"
-        value="<?= $character['character_id'] ?>"
+        value="<?= htmlspecialchars($character['character_id']) ?>"
     >
-
+    
     <div>
-        <label>Name:</label>
+        <label>Health:</label>
+
         <input
-            type="text"
-            name="character_name"
-            value="<?= htmlspecialchars($character['character_name']) ?>"
+            type="number"
+            name="character_health"
+            value="<?= htmlspecialchars($character['character_health']) ?>"
+            min="0"
+            max="9999"
             required
         >
     </div>
 
     <div>
-        <label>Class:</label>
+        <label>Max HP:</label>
 
-        <select name="character_class" required>
-            <option value="1" <?= $character['character_class'] == '1' ? 'selected' : '' ?>>
-                1
-            </option>
-
-            <option value="2" <?= $character['character_class'] == '2' ? 'selected' : '' ?>>
-                2
-            </option>
-
-            <option value="3" <?= $character['character_class'] == '3' ? 'selected' : '' ?>>
-                3
-            </option>
-
-            <option value="4" <?= $character['character_class'] == '4' ? 'selected' : '' ?>>
-                4
-            </option>
-
-            <option value="5" <?= $character['character_class'] == '5' ? 'selected' : '' ?>>
-                5
-            </option>
-        </select>
+        <input
+            type="number"
+            name="character_max_hp"
+            value="<?= htmlspecialchars($character['character_max_hp']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
     </div>
 
     <div>
-        <label>Race:</label>
+        <label>Level:</label>
 
-        <select name="character_race" required>
-            <option value="1" <?= $character['character_race'] === '1' ? 'selected' : '' ?>>
-                1
-            </option>
+        <input
+            type="number"
+            name="character_level"
+            value="<?= htmlspecialchars($character['character_level']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
+    </div>
 
-            <option value="2" <?= $character['character_race'] === '2' ? 'selected' : '' ?>>
-                2
-            </option>
+    <div>
+        <label>Mana:</label>
 
-            <option value="3" <?= $character['character_race'] === '3' ? 'selected' : '' ?>>
-                3
-            </option>
+        <input
+            type="number"
+            name="character_mana"
+            value="<?= htmlspecialchars($character['character_mana']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
+    </div>
 
-            <option value="4" <?= $character['character_race'] === '4' ? 'selected' : '' ?>>
-                4
-            </option>
+    <div>
+        <label>Strength:</label>
 
-            <option value="5" <?= $character['character_race'] === '5' ? 'selected' : '' ?>>
-                5
-            </option>
-        </select>
+        <input
+            type="number"
+            name="character_strength"
+            value="<?= htmlspecialchars($character['character_strength']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Endurance:</label>
+
+        <input
+            type="number"
+            name="character_endurance"
+            value="<?= htmlspecialchars($character['character_endurance']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Agility:</label>
+
+        <input
+            type="number"
+            name="character_agility"
+            value="<?= htmlspecialchars($character['character_agility']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Intelligence:</label>
+
+        <input
+            type="number"
+            name="character_intelligence"
+            value="<?= htmlspecialchars($character['character_intelligence']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
+    </div>
+
+    <div>
+        <label>Charisma:</label>
+
+        <input
+            type="number"
+            name="character_charisma"
+            value="<?= htmlspecialchars($character['character_charisma']) ?>"
+            min="1"
+            max="9999"
+            required
+        >
     </div>
 
     <div>
         <label>Notes:</label>
-        <textarea name="character_notes" required><?= htmlspecialchars($character['character_notes']) ?></textarea>
+
+        <textarea name="character_notes"><?= htmlspecialchars($character['character_notes']) ?></textarea>
     </div>
 
     <div>

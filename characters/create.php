@@ -7,21 +7,25 @@
 
         <label for="character_class">Choose a Class:</label>
         <select name="character_class" required>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option value="Fighter">Fighter</option>
+            <option value="Mage">Mage</option>
+            <option value="Ranger">Ranger</option>
+            <option value="Bard">Bard</option>
+            <option value="Cleric">Cleric</option>
         </select>
 
         <label for="character_race">Choose a Race:</label>
         <select name="character_race" required>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option value="Human">Human</option>
+            <option value="Dwarf">Dwarf</option>
+            <option value="Elf">Elf</option>
+            <option value="Gnome">Gnome</option>
+            <option value="Orc">Orc</option>
         </select>
+
+        <br>
+        <p>You WON'T be able to change these later.</p>
+        <p>You may edit other attributes in the character edit page.</p>
 
         <button type="submit">Create</button>
         <button type="reset">Reset</button>
